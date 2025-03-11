@@ -18,9 +18,21 @@
     <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="linked_list.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="account.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="equipment_management.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="linked_list.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="configs.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

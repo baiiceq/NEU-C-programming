@@ -1,0 +1,5 @@
+﻿  main.c
+F:\m\code\keshe\main.c(15,33): warning C4267: “函数”: 从“size_t”转换到“int”，可能丢失数据
+  keshe.vcxproj -> F:\m\code\keshe\x64\Debug\keshe.exe
+  'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
+  或批处理文件。
