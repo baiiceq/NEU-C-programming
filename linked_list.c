@@ -1,6 +1,6 @@
 #include "linked_list.h"
 
-LinkedList* CreatLinkedList()
+LinkedList* CreateLinkedList()
 {
     LinkedList* list = (LinkedList*)malloc(sizeof(LinkedList));
     if (!list) 

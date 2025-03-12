@@ -2,13 +2,12 @@
 
 int main()
 {
-	EquipmentManagement* em = CreatEquipmentManagement();
+	EquipmentManagement* em = CreateEquipmentManagement();
 
 	while (em->running)
 	{
-		ShowMenu(em);
 		Run(em);
 	}
 
-	DestoryedEquipmentManagement(em);
+	DestoryEquipmentManagement(em);
 }

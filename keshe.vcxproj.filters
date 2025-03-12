@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="源文件\interface">
+      <UniqueIdentifier>{68f38551-c41d-44ed-8541-ef7a4c4af24c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\interface%28h%29">
+      <UniqueIdentifier>{ef0c1c7f-af32-4d3b-8c74-e34a62335a1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -21,8 +27,20 @@
     <ClCompile Include="linked_list.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="account.cpp">
+    <ClCompile Include="account.h">
       <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="login_interface.h">
+      <Filter>头文件\interface%28h%29</Filter>
+    </ClCompile>
+    <ClCompile Include="login_interface.c">
+      <Filter>源文件\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="equipment_management.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="register_interface.c">
+      <Filter>源文件\interface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +52,12 @@
     </ClInclude>
     <ClInclude Include="configs.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="register_interface.h">
+      <Filter>头文件\interface%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="management_interface.h">
+      <Filter>头文件\interface%28h%29</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

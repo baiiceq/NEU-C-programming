@@ -20,7 +20,7 @@ typedef struct _LinkedList
 } LinkedList;
 
 // 创建链表
-LinkedList* CreatLinkedList();
+LinkedList* CreateLinkedList();
 
 // 销毁链表
 void destoryLinkedList(LinkedList* list); 

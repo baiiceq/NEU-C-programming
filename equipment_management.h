@@ -1,7 +1,14 @@
 #ifndef EQUIPMENT_MANAGEMENT
 #define EQUIPMENT_MANAGEMENT
 
+#include <stdio.h>
+
 #include "configs.h"
+#include "account.h"
+#include "login_interface.h"
+
+struct _LoginInterface;
+typedef struct _LoginInterface LoginInterface;
 
 typedef enum _CurrentState
 {
@@ -14,14 +21,14 @@ typedef struct _EquipmentManagement
 {
 	bool running;    //  «∑Ò‘À––
 	CurrentState current_state;
-} EquipmentManagement;
+	Account* current_account;
 
-void ShowMenu(EquipmentManagement* em);
+} EquipmentManagement;
 
 void Run(EquipmentManagement* em);
 
-EquipmentManagement* CreatEquipmentManagement();
+EquipmentManagement* CreateEquipmentManagement();
 
-void DestoryedEquipmentManagement(EquipmentManagement* em);
+void DestoryEquipmentManagement(EquipmentManagement* em);
 
 #endif // EQUIPMENT_MANAGEMENT
