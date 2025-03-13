@@ -1,15 +1,4 @@
-﻿  account.h
-  login_interface.h
-  正在生成代码...
-  equipment_management.c
-F:\m\code\keshe\equipment_management.c(14,18): warning C4013: “ShowRegisterMenu”未定义；假设外部返回 int
-F:\m\code\keshe\equipment_management.c(15,9): warning C4013: “RunRegisterInterface”未定义；假设外部返回 int
-  linked_list.c
-  login_interface.c
-  main.c
-  register_interface.c
-  正在生成代码...
-keshe\x64\Debug\login_interface.obj : warning LNK4042: 对象被多次指定；已忽略多余的指定
+﻿  resource_manager.c
   keshe.vcxproj -> F:\m\code\keshe\x64\Debug\keshe.exe
   'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
   或批处理文件。

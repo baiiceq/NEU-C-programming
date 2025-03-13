@@ -1,5 +1,6 @@
 #include "equipment_management.h"
 #include "login_interface.h" 
+#include "register_interface.h"
 
 void Run(EquipmentManagement* em)
 {
@@ -36,5 +37,6 @@ EquipmentManagement* CreateEquipmentManagement()
 
 void DestoryEquipmentManagement(EquipmentManagement* em)
 {
-    destoryLoginInterface();
+    DestoryResourceManage();
+    free(em);
 }

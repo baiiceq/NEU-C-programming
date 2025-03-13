@@ -134,6 +134,7 @@
     <ClCompile Include="login_interface.h" />
     <ClCompile Include="main.c" />
     <ClCompile Include="register_interface.c" />
+    <ClCompile Include="resource_manager.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="configs.h" />
@@ -141,6 +142,7 @@
     <ClInclude Include="linked_list.h" />
     <ClInclude Include="management_interface.h" />
     <ClInclude Include="register_interface.h" />
+    <ClInclude Include="resource_manager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
