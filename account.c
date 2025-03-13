@@ -1,10 +1,10 @@
 #include "account.h"
 #include <ctype.h>
 #include <string.h>
-//#include "login_interface.h"
+#include "resource_manager.h"
 
 
-bool* IsValidAccount(Account* account)
+bool IsValidAccount(Account* account)
 {
 	if (!IsValidUsername(account->user_name))
 	{
@@ -43,8 +43,8 @@ bool IsValidUsername(char* username)
 
 Account* FindByUsername(char* username)
 {
-	//LoginInterface* login_interface = GetLoginInterface();
-	//Node* temp = login_interface->account_list->head;
+	ResourceManager* instance = GetResourceManage();
+	Node* temp = instance->account_list->head;
 	while (temp)
 	{
 		Account* account = (Account*)temp->data;

@@ -23,7 +23,7 @@ typedef struct _Account
 // œ˙ªŸ’Àªß
 void DestoryAccount(Account* account);
 
-bool* IsValidAccount(Account* account);
+bool IsValidAccount(Account* account);
 bool IsValidUsername(char* username);
 Account* FindByUsername(char* username);
 bool IsValidPassword(char* password);
