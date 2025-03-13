@@ -35,8 +35,8 @@ void RunRegisterInterface(int option, EquipmentManagement* em)
         }
         
         // ´¢´æÐÂÕË»§
-        LoginInterface* login_interface = GetLoginInterface();
-        LinkedList_pushback(login_interface->account_list, account);
+        ResourceManager* resource_manager = GetResourceManage();
+        LinkedList_pushback(resource_manager->account_list, account);
     }
     break;
     case 2:

@@ -7,9 +7,6 @@
 #include "account.h"
 #include "login_interface.h"
 
-struct _LoginInterface;
-typedef struct _LoginInterface LoginInterface;
-
 typedef enum _CurrentState
 {
 	Login,       // µÇÂ¼½çÃæ

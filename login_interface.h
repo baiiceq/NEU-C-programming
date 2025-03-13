@@ -9,17 +9,6 @@
 struct _EquipmentManagement;
 typedef struct _EquipmentManagement EquipmentManagement;
 
-typedef struct _LoginInterface 
-{
-    LinkedList* account_list;
-} LoginInterface;
-
-// 销毁登录界面
-void destoryLoginInterface();
-
-// 获取登录界面
-LoginInterface* GetLoginInterface();
-
 int ShowLoginMenu();
 
 void RunLoginInterface(int option, EquipmentManagement* em);

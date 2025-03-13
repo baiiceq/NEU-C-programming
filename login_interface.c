@@ -1,32 +1,5 @@
 #include "login_interface.h"
 
-static LoginInterface* login_instance = NULL;
-
-void destoryLoginInterface()
-{
-    if (login_instance)
-    {
-        destoryLinkedList(login_instance->account_list);
-        free(login_instance);
-    }
-}
-
-LoginInterface* GetLoginInterface()
-{
-    if (login_instance == NULL)
-    {
-        login_instance = (LoginInterface*)malloc(sizeof(LoginInterface));
-        if (login_instance == NULL) 
-        {
-            perror("登陆界面创建失败\n");
-            return NULL;
-        }
-        login_instance->account_list = CreateLinkedList();
-    }
-
-    return login_instance;
-}
-
 int ShowLoginMenu()
 {
     system("cls");
