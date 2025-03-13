@@ -6,9 +6,6 @@
 #include "linked_list.h"
 #include "equipment_management.h"
 
-struct _EquipmentManagement;
-typedef struct _EquipmentManagement EquipmentManagement;
-
 int ShowLoginMenu();
 
 void RunLoginInterface(int option, EquipmentManagement* em);

@@ -1,7 +1,7 @@
 #ifndef REGISTER_INTERFACE
 #define REGISTER_INTERFACE
 
-#include "login_interface.h"
+#include "account.h"
 #include "resource_manager.h"
 #include "equipment_management.h"
 
