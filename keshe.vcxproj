@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="account.c" />
     <ClCompile Include="account.h" />
     <ClCompile Include="equipment_management.c" />
     <ClCompile Include="linked_list.c" />

@@ -42,6 +42,9 @@
     <ClCompile Include="register_interface.c">
       <Filter>源文件\interface</Filter>
     </ClCompile>
+    <ClCompile Include="account.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="equipment_management.h">

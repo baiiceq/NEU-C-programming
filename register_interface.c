@@ -50,5 +50,17 @@ void RunRegisterInterface(int option, EquipmentManagement* em)
 
 Account* AccountRegister()
 {
-    return NULL;
+    Account* account = (Account*)malloc(sizeof(Account));
+    printf("请输入用户类型1.管理员2.实验员3.一般用户\n");
+    scanf_s("%d", &account->account_type);
+    printf("请输入用户名\n");
+    scanf_s("%s", account->user_name);
+    printf("请输入用户密码\n");
+    scanf_s("%s", account->user_password);
+    if (!IsValidAccount(account))
+    {
+		free(account);
+		return NULL;
+    }
+    return account;
 }
