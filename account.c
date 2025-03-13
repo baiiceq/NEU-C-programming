@@ -36,7 +36,7 @@ bool IsValidUsername(char* username)
 			return 0;
 		username++;
 	}
-	if (count <= 4)
+	if (count < 4)
 		return 0;
 	return 1;
 }

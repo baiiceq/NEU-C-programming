@@ -31,6 +31,7 @@ void RunLoginInterface(int option, EquipmentManagement* em)
         if (account == NULL)
         {
             printf("µÇÂ¼Ê§°Ü\n");
+            system("pause");
             return;
         }
         em->current_state = Management;
@@ -45,6 +46,7 @@ void RunLoginInterface(int option, EquipmentManagement* em)
         printf("²Ù×÷·Ç·¨£¡\n");
         break;
     }
+    system("pause");
 }
 
 Account* AccountLogin()

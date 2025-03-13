@@ -31,6 +31,7 @@ void RunRegisterInterface(int option, EquipmentManagement* em)
         if (account == NULL)
         {
             printf("注册失败\n");
+            system("pause");
             return;
         }
         
@@ -38,7 +39,6 @@ void RunRegisterInterface(int option, EquipmentManagement* em)
         ResourceManager* resource_manager = GetResourceManage();
         LinkedList_pushback(resource_manager->account_list, account);
 		printf("注册成功\n");
-        system("pause");
     }
     break;
     case 2:
@@ -46,9 +46,9 @@ void RunRegisterInterface(int option, EquipmentManagement* em)
         break;
     default:
         printf("操作非法！\n");
-        system("pause");
         break;
     }
+    system("pause");
 }
 
 Account* AccountRegister()
@@ -68,6 +68,10 @@ Account* AccountRegister()
         break;
 	case 3:
 		account->account_type = User;
+		break;
+	default:
+		printf("用户类型不合法\n");
+		return NULL;
     }
     printf("请输入用户名(长度在4-12位，且只能包含字母和数字）\n");
 	fgets(account->user_name, USER_NMAE_LENGTH, stdin);
