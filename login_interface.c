@@ -35,6 +35,7 @@ void RunLoginInterface(int option, EquipmentManagement* em)
         }
         em->current_state = Management;
         em->current_account = account;
+        printf("登录成功\n");
     }
         break;
     case 2:
@@ -48,5 +49,17 @@ void RunLoginInterface(int option, EquipmentManagement* em)
 
 Account* AccountLogin()
 {
-    return NULL;
+    Account* account = (Account*)malloc(sizeof(Account));
+    printf("请输入用户名(长度在4-12位，且只能包含字母和数字）\n");
+    fgets(account->user_name, USER_NMAE_LENGTH, stdin);
+    account->user_name[strcspn(account->user_name, "\n")] = '\0';
+    printf("请输入用户密码（长度在8-20位，且只能包含字母数字以及@+？）\n");
+    fgets(account->user_password, sizeof(account->user_password), stdin);
+    account->user_password[strcspn(account->user_password, "\n")] = '\0';
+    if (!IsCorrectAccount(account))
+    {
+		free(account);
+        return NULL;
+    }
+    return account;
 }

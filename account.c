@@ -44,7 +44,7 @@ bool IsValidUsername(char* username)
 Account* FindByUsername(char* username)
 {
 	ResourceManager* instance = GetResourceManage();
-	Node* temp = instance->account_list->head;
+	Node* temp = instance->account_list->head->next;
 	while (temp)
 	{
 		Account* account = (Account*)temp->data;
@@ -71,3 +71,20 @@ bool IsValidPassword(char* password)
 		return 0;
 	return 1;
 }
+
+bool IsCorrectAccount(Account* account)
+{
+	Account* temp = FindByUsername(account->user_name);
+	if (temp == NULL)
+	{
+		printf("用户名不存在\n");
+		return 0;
+	}
+	if (strcmp(temp->user_password, account->user_password) != 0)
+	{
+		printf("密码错误\n");
+		return 0;
+	}
+	return 1;
+}
+

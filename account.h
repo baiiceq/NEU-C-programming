@@ -17,8 +17,6 @@ typedef struct _Account
 	char user_password[USER_PASSWORD_LENGTH];
 } Account;
 
-// 创建账户(检验用户名，密码合法性）
-//Account* CreatAccount(Account* account);
 
 // 销毁账户
 void DestoryAccount(Account* account);
@@ -27,7 +25,7 @@ bool IsValidAccount(Account* account);
 bool IsValidUsername(char* username);
 Account* FindByUsername(char* username);
 bool IsValidPassword(char* password);
-
+bool IsCorrectAccount(Account* account);
 
 // ....其他函数
 #endif // !ACCOUNT

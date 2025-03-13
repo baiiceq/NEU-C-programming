@@ -37,6 +37,8 @@ void RunRegisterInterface(int option, EquipmentManagement* em)
         // 储存新账户
         ResourceManager* resource_manager = GetResourceManage();
         LinkedList_pushback(resource_manager->account_list, account);
+		printf("注册成功\n");
+        system("pause");
     }
     break;
     case 2:
@@ -44,6 +46,7 @@ void RunRegisterInterface(int option, EquipmentManagement* em)
         break;
     default:
         printf("操作非法！\n");
+        system("pause");
         break;
     }
 }
@@ -51,12 +54,27 @@ void RunRegisterInterface(int option, EquipmentManagement* em)
 Account* AccountRegister()
 {
     Account* account = (Account*)malloc(sizeof(Account));
+    int a = 0;
     printf("请输入用户类型1.管理员2.实验员3.一般用户\n");
-    scanf_s("%d", &account->account_type);
-    printf("请输入用户名\n");
-    scanf_s("%s", account->user_name);
-    printf("请输入用户密码\n");
-    scanf_s("%s", account->user_password);
+    scanf_s("%d",&a);
+    while (getchar() != '\n');
+    switch (a) 
+    {
+	case 1:
+		account->account_type = Admin;
+		break;
+    case 2:
+		account->account_type = Experimenter;
+        break;
+	case 3:
+		account->account_type = User;
+    }
+    printf("请输入用户名(长度在4-12位，且只能包含字母和数字）\n");
+	fgets(account->user_name, USER_NMAE_LENGTH, stdin);
+    account->user_name[strcspn(account->user_name, "\n")] = '\0';
+    printf("请输入用户密码（长度在8-20位，且只能包含字母数字以及@+？）\n");
+    fgets(account->user_password, sizeof(account->user_password), stdin);
+    account->user_password[strcspn(account->user_password, "\n")] = '\0';
     if (!IsValidAccount(account))
     {
 		free(account);
