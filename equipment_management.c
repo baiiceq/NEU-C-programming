@@ -31,12 +31,13 @@ EquipmentManagement* CreateEquipmentManagement()
     em->current_account = NULL;
     em->running = True;
     em->current_state = Login;
-
+    CreateAccountList();
     return em;
 }
 
 void DestoryEquipmentManagement(EquipmentManagement* em)
 {
+    SaveAccountList();
     DestoryResourceManage();
     free(em);
 }
