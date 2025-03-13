@@ -1,6 +1,7 @@
 #include "equipment_management.h"
-#include "login_interface.h" 
 #include "register_interface.h"
+#include "login_interface.h"
+#include "management_interface.h"
 
 void Run(EquipmentManagement* em)
 {
@@ -15,7 +16,10 @@ void Run(EquipmentManagement* em)
         option = ShowRegisterMenu();
         RunRegisterInterface(option, em);
         break;
-        
+    case Management:
+        option = ShowManagementMenu(em->current_account->account_type);
+        RunManagementInterface(option, em, em->current_account->account_type);
+        break;
     }
 }
 

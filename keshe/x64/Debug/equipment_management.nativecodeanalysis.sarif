@@ -1,0 +1,99 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.39.33523.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/equipment_management.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "b1be082ebfdd77150555fd5ac356a642a26786738a5cbf98a4fc11c9aaf17cb1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/equipment_management.h"
+          },
+          "hashes": {
+            "sha-256": "0f8279ad006a6c4b7b8c49cb30a9139dd0e15207b7b6e9f38038fee0cf333164"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/configs.h"
+          },
+          "hashes": {
+            "sha-256": "9c84bbb14557ef770980ed9ebfc8aec64d89ff26cb7ddd232a96fe05ccee7246"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/account.h"
+          },
+          "hashes": {
+            "sha-256": "5dcb0ab3aefea6a4e11d985355eac9511d0c1c0625e9fe65f9c2bdda8b066089"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/login_interface.h"
+          },
+          "hashes": {
+            "sha-256": "000f8bd7aadf4bcb7ae0ca408f9db3a5934408650b329ba2edac054294fa4ebf"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/linked_list.h"
+          },
+          "hashes": {
+            "sha-256": "ed82d180c1b5361f917571290c8594c3c184cca6ccec6647b6d069a7a58ed984"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/register_interface.h"
+          },
+          "hashes": {
+            "sha-256": "d868f86515bf804ac02094ae51cd2cfe3761f3c2f0cb0e9b42d52d6898b18cd1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/resource_manager.h"
+          },
+          "hashes": {
+            "sha-256": "c233afd3964a59d4a6708a20f0d1eb55bc8d631db3e413c0fa4e59b9200017b9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/management_interface.h"
+          },
+          "hashes": {
+            "sha-256": "b5a98e03cbc98d8a659d442f42e11ee39b98a3da71817399daaddbc21c8ae16f"
+          }
+        }
+      ]
+    }
+  ]
+}

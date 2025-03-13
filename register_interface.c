@@ -79,6 +79,7 @@ Account* AccountRegister()
     printf("请输入用户密码（长度在8-20位，且只能包含字母数字以及@+？）\n");
     fgets(account->user_password, sizeof(account->user_password), stdin);
     account->user_password[strcspn(account->user_password, "\n")] = '\0';
+
     if (!IsValidAccount(account))
     {
 		free(account);

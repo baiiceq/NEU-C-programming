@@ -1,4 +1,6 @@
-﻿  resource_manager.c
+﻿  account.c
+  management_interface.c
+  正在生成代码...
   keshe.vcxproj -> F:\m\code\keshe\x64\Debug\keshe.exe
   'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
   或批处理文件。

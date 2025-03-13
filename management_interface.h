@@ -5,14 +5,28 @@
 #include "linked_list.h"
 #include "equipment_management.h"
 
-// 销毁管理界面
-void destoryManagementInterface();
+int ShowManagementMenu(AccountType account_type);
 
-// 获取管理界面
-LoginInterface* GetManagementInterface();
+void RunManagementInterface(int option, EquipmentManagement* em, AccountType account_type);
 
-int ShowManagementMenu();
+// 信息查询函数
+void QueryInformation();
 
-void RunManagementInterface(int option, EquipmentManagement* em);
+// 信息排序函数
+void SortInformation();
 
+// 信息统计
+void Statistics();
+
+// 系统维护
+void SystemMaintenance(AccountType account_type);
+
+// 基本信息维护
+void BasicInformationManagement();
+
+// 信息调整管理
+void AdjustmentInformation();
+
+// 设备管理
+void EquipmentsManagement();
 #endif // !MANAGEMENT_INTERFACE

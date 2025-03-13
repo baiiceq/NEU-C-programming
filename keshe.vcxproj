@@ -134,6 +134,7 @@
     <ClCompile Include="login_interface.c" />
     <ClCompile Include="login_interface.h" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="management_interface.c" />
     <ClCompile Include="register_interface.c" />
     <ClCompile Include="resource_manager.c" />
   </ItemGroup>

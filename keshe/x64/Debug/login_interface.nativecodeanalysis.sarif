@@ -1,0 +1,67 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.39.33523.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/login_interface.h"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "000f8bd7aadf4bcb7ae0ca408f9db3a5934408650b329ba2edac054294fa4ebf"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/configs.h"
+          },
+          "hashes": {
+            "sha-256": "9c84bbb14557ef770980ed9ebfc8aec64d89ff26cb7ddd232a96fe05ccee7246"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/account.h"
+          },
+          "hashes": {
+            "sha-256": "5dcb0ab3aefea6a4e11d985355eac9511d0c1c0625e9fe65f9c2bdda8b066089"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/linked_list.h"
+          },
+          "hashes": {
+            "sha-256": "ed82d180c1b5361f917571290c8594c3c184cca6ccec6647b6d069a7a58ed984"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///f:/m/code/keshe/equipment_management.h"
+          },
+          "hashes": {
+            "sha-256": "0f8279ad006a6c4b7b8c49cb30a9139dd0e15207b7b6e9f38038fee0cf333164"
+          }
+        }
+      ]
+    }
+  ]
+}
