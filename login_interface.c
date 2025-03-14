@@ -1,6 +1,5 @@
 #include "login_interface.h"
 
-
 int ShowLoginMenu()
 {
     system("cls");

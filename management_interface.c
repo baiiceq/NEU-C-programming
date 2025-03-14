@@ -1,5 +1,6 @@
 #include "management_interface.h"
 
+
 int ShowManagementMenu(AccountType account_type)
 {
     system("cls");
