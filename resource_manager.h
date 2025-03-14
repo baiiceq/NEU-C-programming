@@ -11,10 +11,12 @@ typedef struct _ResourceManager
 	LinkedList* equipment_list;   // 实验设备
 	LinkedList* laboratory_list;  // 实验室
 }ResourceManager;
-#endif // !RESOURCE_MANAGER_H
+
 
 ResourceManager* GetResourceManage();
 bool CreateAccountList();
 bool SaveAccountList();
 
 void DestoryResourceManage();
+
+#endif // !RESOURCE_MANAGER_H
