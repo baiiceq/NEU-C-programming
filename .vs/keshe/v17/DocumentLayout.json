@@ -1,0 +1,290 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\m\\code\\keshe\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\management_interface.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:management_interface.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\management_interface.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:management_interface.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\register_interface.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:register_interface.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\equipment_management.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:equipment_management.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\account.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:account.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\resource_manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:resource_manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\equipment_management.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:equipment_management.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\register_interface.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:register_interface.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\account.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:account.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\configs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:configs.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\login_interface.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:login_interface.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\resource_manager.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:resource_manager.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\login_interface.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:login_interface.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\linked_list.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:linked_list.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\linked_list.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:linked_list.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|F:\\m\\code\\keshe\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{710D4776-C4EF-4A7C-BC78-E9B9FDECCDA8}|keshe.vcxproj|solutionrelative:main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "management_interface.c",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\management_interface.c",
+              "RelativeDocumentMoniker": "management_interface.c",
+              "ToolTip": "F:\\m\\code\\keshe\\management_interface.c",
+              "RelativeToolTip": "management_interface.c",
+              "ViewState": "AQIAAEUAAAAAAAAAAAAAAEgAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-03-13T11:03:55.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "account.c",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\account.c",
+              "RelativeDocumentMoniker": "account.c",
+              "ToolTip": "F:\\m\\code\\keshe\\account.c",
+              "RelativeToolTip": "account.c",
+              "ViewState": "AQIAAFoAAAAAAAAAAADwv2kAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-03-13T08:48:20.579Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "resource_manager.c",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\resource_manager.c",
+              "RelativeDocumentMoniker": "resource_manager.c",
+              "ToolTip": "F:\\m\\code\\keshe\\resource_manager.c",
+              "RelativeToolTip": "resource_manager.c",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-03-13T05:09:23.838Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "resource_manager.h",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\resource_manager.h",
+              "RelativeDocumentMoniker": "resource_manager.h",
+              "ToolTip": "F:\\m\\code\\keshe\\resource_manager.h",
+              "RelativeToolTip": "resource_manager.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-13T03:53:44.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "management_interface.h",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\management_interface.h",
+              "RelativeDocumentMoniker": "management_interface.h",
+              "ToolTip": "F:\\m\\code\\keshe\\management_interface.h",
+              "RelativeToolTip": "management_interface.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-12T08:53:24.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "register_interface.c",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\register_interface.c",
+              "RelativeDocumentMoniker": "register_interface.c",
+              "ToolTip": "F:\\m\\code\\keshe\\register_interface.c",
+              "RelativeToolTip": "register_interface.c",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAAAAIAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-03-12T08:39:07.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "register_interface.h",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\register_interface.h",
+              "RelativeDocumentMoniker": "register_interface.h",
+              "ToolTip": "F:\\m\\code\\keshe\\register_interface.h",
+              "RelativeToolTip": "register_interface.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-12T08:36:15.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "equipment_management.c",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\equipment_management.c",
+              "RelativeDocumentMoniker": "equipment_management.c",
+              "ToolTip": "F:\\m\\code\\keshe\\equipment_management.c",
+              "RelativeToolTip": "equipment_management.c",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-03-12T08:03:16.406Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "login_interface.c",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\login_interface.c",
+              "RelativeDocumentMoniker": "login_interface.c",
+              "ToolTip": "F:\\m\\code\\keshe\\login_interface.c",
+              "RelativeToolTip": "login_interface.c",
+              "ViewState": "AQIAADMAAAAAAAAAAAAAAD4AAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-03-12T07:13:16.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "login_interface.h",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\login_interface.h",
+              "RelativeDocumentMoniker": "login_interface.h",
+              "ToolTip": "F:\\m\\code\\keshe\\login_interface.h",
+              "RelativeToolTip": "login_interface.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-12T06:50:54.331Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "account.h",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\account.h",
+              "RelativeDocumentMoniker": "account.h",
+              "ToolTip": "F:\\m\\code\\keshe\\account.h",
+              "RelativeToolTip": "account.h",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAACIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-11T11:49:39.045Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "linked_list.c",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\linked_list.c",
+              "RelativeDocumentMoniker": "linked_list.c",
+              "ToolTip": "F:\\m\\code\\keshe\\linked_list.c",
+              "RelativeToolTip": "linked_list.c",
+              "ViewState": "AQIAAHsAAAAAAAAAAAAAAAIAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-03-11T10:11:42.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "configs.h",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\configs.h",
+              "RelativeDocumentMoniker": "configs.h",
+              "ToolTip": "F:\\m\\code\\keshe\\configs.h",
+              "RelativeToolTip": "configs.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-11T08:53:06.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "linked_list.h",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\linked_list.h",
+              "RelativeDocumentMoniker": "linked_list.h",
+              "ToolTip": "F:\\m\\code\\keshe\\linked_list.h",
+              "RelativeToolTip": "linked_list.h",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABYAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-11T08:50:30.219Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "equipment_management.h",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\equipment_management.h",
+              "RelativeDocumentMoniker": "equipment_management.h",
+              "ToolTip": "F:\\m\\code\\keshe\\equipment_management.h",
+              "RelativeToolTip": "equipment_management.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-11T08:47:21.123Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "main.c",
+              "DocumentMoniker": "F:\\m\\code\\keshe\\main.c",
+              "RelativeDocumentMoniker": "main.c",
+              "ToolTip": "F:\\m\\code\\keshe\\main.c",
+              "RelativeToolTip": "main.c",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-03-11T08:46:36.09Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
