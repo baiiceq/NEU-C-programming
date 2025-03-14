@@ -8,4 +8,10 @@
 
 #define USER_NMAE_LENGTH 50
 #define USER_PASSWORD_LENGTH 50
+#define CATEGORY_LENGTH 50
+#define EQUIPMENT_LENGTH 50
+#define LABROOM_LENGTH 50
+
+void 
 #endif // !CONFIGS
+
