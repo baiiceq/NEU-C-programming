@@ -2,6 +2,7 @@
 #define RESOURCE_MANAGER_H
 
 #include "linked_list.h"
+#include "configs.h"
 
 typedef struct _ResourceManager
 {
@@ -12,5 +13,7 @@ typedef struct _ResourceManager
 #endif // !RESOURCE_MANAGER_H
 
 ResourceManager* GetResourceManage();
+bool CreateAccountList();
+bool SaveAccountList();
 
 void DestoryResourceManage();
