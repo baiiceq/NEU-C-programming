@@ -1,3 +1,4 @@
+#pragma once
 #ifndef ACCOUNT
 #define ACCOUNT
 

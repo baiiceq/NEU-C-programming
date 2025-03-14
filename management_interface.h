@@ -1,3 +1,4 @@
+#pragma once
 #ifndef MANAGEMENT_INTERFACE
 #define MANAGEMENT_INTERFACE
 

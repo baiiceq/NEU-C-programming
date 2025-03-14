@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LOGIN_INTERFACE
 #define LOGIN_INTERFACE
 

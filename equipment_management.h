@@ -1,6 +1,6 @@
 #ifndef EQUIPMENT_MANAGEMENT
 #define EQUIPMENT_MANAGEMENT
-
+#pragma once
 #include <stdio.h>
 
 #include "configs.h"

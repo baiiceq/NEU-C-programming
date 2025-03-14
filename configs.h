@@ -1,3 +1,4 @@
+#pragma once
 #ifndef CONFIGS
 #define CONFIGS
 
