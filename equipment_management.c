@@ -36,12 +36,16 @@ EquipmentManagement* CreateEquipmentManagement()
     em->running = True;
     em->current_state = Login;
     CreateAccountList();
+
+    LoadId();
     return em;
 }
 
 void DestoryEquipmentManagement(EquipmentManagement* em)
 {
     SaveAccountList();
+    SaveId();
+    DestoryIdManager();
     DestoryResourceManage();
     free(em);
 }

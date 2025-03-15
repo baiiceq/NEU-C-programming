@@ -1,10 +1,13 @@
+#pragma once
+
 #ifndef EQUIPMENT_MANAGEMENT
 #define EQUIPMENT_MANAGEMENT
-#pragma once
+
 #include <stdio.h>
 
 #include "configs.h"
 #include "account.h"
+#include "id_manager.h"
 
 
 typedef enum _CurrentState
