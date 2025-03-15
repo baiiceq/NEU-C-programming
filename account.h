@@ -1,6 +1,6 @@
 #pragma once
-#ifndef ACCOUNT
-#define ACCOUNT
+#ifndef ACCOUNT_H
+#define ACCOUNT_H
 
 #include "configs.h"
 
