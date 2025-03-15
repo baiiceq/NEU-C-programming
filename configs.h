@@ -12,6 +12,7 @@
 #define EQUIPMENT_LENGTH 50
 #define LABROOM_LENGTH 50
 
-void 
+#define DATE_LENGTH 11
+
 #endif // !CONFIGS
 
