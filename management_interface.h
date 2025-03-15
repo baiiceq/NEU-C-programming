@@ -6,6 +6,7 @@
 #include "linked_list.h"
 #include "equipment_management.h"
 #include "id_manager.h"
+#include "info_operations.h"
 
 int ShowManagementMenu(AccountType account_type);
 
