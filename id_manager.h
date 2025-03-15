@@ -6,16 +6,18 @@
 
 typedef enum _IdType
 {
-    Equipment,
-    Room,
-    Account
+    EquipmentID,
+    CategoryID,
+    RoomID,
+    AccountID
 }IdType;
 
 typedef struct _IdManager
 {
     int current_equipment_id;   // 设备ID
-    int current_room_id;     // 房间ID
-    int current_account_id;  // 账户ID
+    int current_category_id;    // 设备类别ID
+    int current_room_id;        // 房间ID
+    int current_account_id;     // 账户ID
 }IdManager;
 
 // 获取一个新ID
