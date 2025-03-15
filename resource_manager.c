@@ -40,6 +40,7 @@ bool CreateAccountList()
 		printf("文件打开失败\n");
 		return False;
 	}
+	ResourceManager* resource_manager = GetResourceManage();
 	while (!feof(fp))
 	{
 		Account* account = (Account*)malloc(sizeof(Account));
@@ -57,7 +58,7 @@ bool CreateAccountList()
 			account->account_type = Experimenter;
 		else if (strcmp(str, "user") == 0)
 			account->account_type = User;
-		LinkedList_pushback(GetResourceManage()->account_list, account);
+		LinkedList_pushback(resource_manager->account_list, account);
 	}   
 	fclose(fp);
 	return True;
