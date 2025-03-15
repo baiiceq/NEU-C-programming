@@ -104,6 +104,7 @@ void SystemMaintenance(AccountType account_type)
 
 void BasicInformationManagement()
 {
+
 }
 
 void AdjustmentInformation()
