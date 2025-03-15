@@ -22,6 +22,22 @@ ResourceManager* GetResourceManage()
     return instance;
 }
 
+void LoadResource()
+{
+	LoadAccountList();
+	LoadCategoryList();
+	LoadEquipmentList();
+	LoadLaboratoryList();
+}
+
+void SaveResource()
+{
+	SaveAccountList();
+	SaveCategoryList();
+	SaveEquipmentList();
+	SaveLaboratoryList();
+}
+
 void DestoryResourceManage()
 {
     if (instance == NULL)
@@ -32,7 +48,7 @@ void DestoryResourceManage()
     destoryLinkedList(instance->laboratory_list);
 }
 
-bool CreateAccountList()
+bool LoadAccountList()
 {
 	FILE* fp = fopen("account.txt", "r");
 	if (fp == NULL)
@@ -88,4 +104,34 @@ bool SaveAccountList()
 	}
 	fclose(fp);
 	return True;
+}
+
+bool LoadEquipmentList()
+{
+	return False;
+}
+
+bool SaveEquipmentList()
+{
+	return False;
+}
+
+bool LoadCategoryList()
+{
+	return False;
+}
+
+bool SaveCategoryList()
+{
+	return False;
+}
+
+bool LoadLaboratoryList()
+{
+	return False;
+}
+
+bool SaveLaboratoryList()
+{
+	return False;
 }
