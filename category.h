@@ -1,7 +1,11 @@
 #ifndef CATEGORY_H
 #define CATEGORY_H
 
+#include <stdio.h>
+#include <string.h>
+
 #include "configs.h"
+#include "id_manager.h"
 
 typedef struct _Category
 {
@@ -10,7 +14,7 @@ typedef struct _Category
 	int disposal_years;            // ±¨·ÏÄêÏÞ
 }Category;
 
-Category* CreateCategory();
+Category* CreateCategory(char* name, int disposal_years);
 
 void DestoryCategory(Category* category);
 #endif // !CATEGORY_H
