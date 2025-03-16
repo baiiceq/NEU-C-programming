@@ -3,6 +3,8 @@
 
 #include "configs.h"
 #include "category.h"
+#include "resource_manager.h"
+
 
 enum EquipmentState
 {
@@ -23,8 +25,19 @@ typedef struct _ExperimentalEquipment
 	int price;                      // 设备价格
 	char purchase_date[DATE_LENGTH];         // 购入日期 (YYYY-MM-DD)
 }ExperimentalEquipment;
-#endif // !EXPERIMENTAL_EQUIPMENT_H
+
 
 ExperimentalEquipment* CreateExperimentalEquipment(Category category, char* name, int room_id, int price, char* purchase_date);
 
 void DestoryExperimentalEquipment(ExperimentalEquipment* experimental_equipment);
+
+bool ChangeName(ExperimentalEquipment* eq, char* newname);
+bool ChangePrice(ExperimentalEquipment* eq, char* newprice);
+bool ChangeRoom_id(ExperimentalEquipment* eq, char* newroomid);
+LinkedList* EFindByName(LinkedList* eqlist, char* name);
+LinkedList* EFindById(LinkedList* eqlist, int id);
+LinkedList* EFindByRoom_id(LinkedList* eqlist, int roomid);
+LinkedList* EFindByCategory(LinkedList* eqlist, int categoryid);
+LinkedList* EFindByDate(LinkedList* eqlist, char* start, char* end);
+LinkedList* EFindByPrice(LinkedList* eqlist, int min, int max);
+#endif // !EXPERIMENTAL_EQUIPMENT_H

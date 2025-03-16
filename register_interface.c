@@ -1,4 +1,5 @@
 #include "register_interface.h"
+#include "account.h"
 
 int ShowRegisterMenu()
 {

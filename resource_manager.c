@@ -1,5 +1,6 @@
 #include "resource_manager.h"
 #include "account.h"
+#include "experimental_equipment.h"
 #include <string.h>
 
 static ResourceManager* instance = NULL;
@@ -59,7 +60,7 @@ bool LoadAccountList()
 	ResourceManager* resource_manager = GetResourceManage();
 	while (!feof(fp))
 	{
-		Account* account = (Account*)malloc(sizeof(Account));
+		Account* account = CreateAccount();
 		char str[15]="";
 		if (account == NULL)
 		{
@@ -108,6 +109,22 @@ bool SaveAccountList()
 
 bool LoadEquipmentList()
 {
+	FILE* fp = fopen("equipment.txt", "r");
+	if (fp == NULL) 
+	{
+		printf("打开文件失败\n");
+		return False;
+	}
+	ResourceManager* resource_manager = GetResourceManage();
+	char str[CATEGORY_LENGTH];
+	while (!feof(fp))
+	{
+		ExperimentalEquipment* eq = (ExperimentalEquipment*)malloc(sizeof(ExperimentalEquipment));
+		fscanf_s(fp, "%d %s %s %d %d %s\n", &eq->id, str, eq->name, eq->room_id, eq->price, eq->purchase_date);
+		//缺类别
+		LinkedList_pushback(resource_manager->equipment_list, eq);
+	}
+	fclose(fp);
 	return False;
 }
 
