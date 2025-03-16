@@ -66,5 +66,6 @@ Account* AccountLogin()
 		free(account);
         return NULL;
     }
+
     return account;
 }
