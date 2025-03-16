@@ -21,3 +21,36 @@ LabRoom* CreateLabRoom(char* name)
 void DestoryLabRoom(LabRoom* lab_room)
 {
 }
+
+void AddLabRoom()
+{
+    char name[LABROOM_LENGTH];
+    system("cls");
+    printf("---          添加新实验室          ---\n\n");
+    printf("--- 输入类型名称->   ");
+    scanf_s("%s", name, LABROOM_LENGTH);
+
+    LabRoom* new_labroom= CreateLabRoom(name);
+    if (new_labroom == NULL)
+        return;
+
+    LinkedList_pushback(GetResourceManage()->laboratory_list, new_labroom);
+
+    printf("创建成功！\n实验室id: %d\n实验室名称: %s\n", new_labroom->id, name);
+    system("pause");
+}
+
+LabRoom* RoomId_to_LabRoom(int room_id)
+{
+    Node* temp = GetResourceManage()->laboratory_list->head;
+
+    while (temp->next)
+    {
+        temp = temp->next;
+        LabRoom* labroom = (LabRoom*)temp->data;
+        if (room_id == labroom->id)
+            return labroom;
+    }
+    return NULL;
+}
+

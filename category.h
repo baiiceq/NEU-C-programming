@@ -6,6 +6,7 @@
 
 #include "configs.h"
 #include "id_manager.h"
+#include "resource_manager.h"
 
 typedef struct _Category
 {
@@ -17,4 +18,6 @@ typedef struct _Category
 Category* CreateCategory(char* name, int disposal_years);
 
 void DestoryCategory(Category* category);
+
+void AddCategory();
 #endif // !CATEGORY_H

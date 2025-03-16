@@ -16,4 +16,8 @@ LabRoom* CreateLabRoom(char* name);
 
 void DestoryLabRoom(LabRoom* lab_room);
 
+void AddLabRoom();
+
+LabRoom* RoomId_to_LabRoom(int room_id);
+
 #endif // !LAB_ROOM_H
