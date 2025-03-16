@@ -20,7 +20,7 @@ void DestoryAccount(Account* account)
 	free(account);
 }
 
-bool IsValidAccount(Account* account)
+bool ValidAccount(Account* account)
 {
 	if (!IsValidUsername(account->user_name))
 	{

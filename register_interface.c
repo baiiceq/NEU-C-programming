@@ -53,7 +53,7 @@ void RunRegisterInterface(int option, EquipmentManagement* em)
 
 Account* AccountRegister()
 {
-    Account* account = (Account*)malloc(sizeof(Account));
+    Account* account = CreateAccount();
     int a = 0;
     printf("请输入用户类型1.管理员2.实验员3.一般用户\n");
     scanf_s("%d",&a);
@@ -80,7 +80,7 @@ Account* AccountRegister()
     fgets(account->user_password, sizeof(account->user_password), stdin);
     account->user_password[strcspn(account->user_password, "\n")] = '\0';
 
-    if (!IsValidAccount(account))
+    if (!ValidAccount(account))
     {
 		free(account);
 		return NULL;

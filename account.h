@@ -3,6 +3,7 @@
 #define ACCOUNT_H
 
 #include "configs.h"
+#include "linked_list.h"
 
 typedef enum _AccountType
 {
@@ -16,6 +17,9 @@ typedef struct _Account
 	AccountType account_type;
 	char user_name[USER_NMAE_LENGTH];
 	char user_password[USER_PASSWORD_LENGTH];
+	int id;  //账户ID
+	int roomid;   //所属实验室id
+	LinkedList* equipment_id_list;   //ta管理的设备的id链表
 } Account;
 
 
@@ -25,7 +29,7 @@ Account* CreateAccount();
 void DestoryAccount(Account* account);
 
 // 判断账户是否有效
-bool IsValidAccount(Account* account);
+bool ValidAccount(Account* account);
 
 // 判断用户名是否有效
 bool IsValidUsername(char* username);
