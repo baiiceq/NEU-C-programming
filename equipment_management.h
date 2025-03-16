@@ -1,5 +1,4 @@
 #pragma once
-
 #ifndef EQUIPMENT_MANAGEMENT
 #define EQUIPMENT_MANAGEMENT
 
