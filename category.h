@@ -1,3 +1,4 @@
+#pragma once
 #ifndef CATEGORY_H
 #define CATEGORY_H
 

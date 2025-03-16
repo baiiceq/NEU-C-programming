@@ -19,6 +19,12 @@
     <Filter Include="头文件\interface%28h%29">
       <UniqueIdentifier>{ef0c1c7f-af32-4d3b-8c74-e34a62335a1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\manager%28h%29">
+      <UniqueIdentifier>{cb9074be-5a44-4971-a526-a53cab015919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\manager">
+      <UniqueIdentifier>{7cb33ac0-4b33-4b23-89ce-cc569d9d48ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -45,11 +51,26 @@
     <ClCompile Include="account.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="resource_manager.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="management_interface.c">
       <Filter>源文件\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="category.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="experimental_equipment.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="info_operations.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="lab_room.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="resource_manager.c">
+      <Filter>源文件\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="id_manager.c">
+      <Filter>源文件\manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,8 +89,23 @@
     <ClInclude Include="management_interface.h">
       <Filter>头文件\interface%28h%29</Filter>
     </ClInclude>
-    <ClInclude Include="resource_manager.h">
+    <ClInclude Include="category.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="info_operations.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="lab_room.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="experimental_equipment.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="resource_manager.h">
+      <Filter>头文件\manager%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="id_manager.h">
+      <Filter>头文件\manager%28h%29</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

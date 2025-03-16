@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LAB_ROOM_H
 #define LAB_ROOM_H
 
