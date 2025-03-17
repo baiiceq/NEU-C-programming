@@ -136,6 +136,7 @@ void BasicInformationManagement()
         break;
     case 4:
         ManageExperimentalEquipment();
+        break;
     default:
         printf("∑«∑®÷∏¡Ó\n");
         system("pause");

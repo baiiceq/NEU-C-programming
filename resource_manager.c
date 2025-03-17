@@ -18,6 +18,7 @@ ResourceManager* GetResourceManage()
         instance->account_list = CreateLinkedList();
         instance->equipment_list = CreateLinkedList();
         instance->laboratory_list = CreateLinkedList();
+		instance->category_list = CreateLinkedList();
     }
 
     return instance;
