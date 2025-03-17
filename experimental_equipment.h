@@ -33,9 +33,6 @@ void DestoryExperimentalEquipment(ExperimentalEquipment* experimental_equipment)
 
 void AddExperimentalEquipment();
 
-#endif // !EXPERIMENTAL_EQUIPMENT_H
-void DestoryExperimentalEquipment(ExperimentalEquipment* experimental_equipment);
-
 bool ChangeName(ExperimentalEquipment* eq, char* newname);
 bool ChangePrice(ExperimentalEquipment* eq, char* newprice);
 bool ChangeRoom_id(ExperimentalEquipment* eq, char* newroomid);

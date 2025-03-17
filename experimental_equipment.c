@@ -35,7 +35,7 @@ void AddExperimentalEquipment()
     if (category_count == 0)
     {
         printf("当前无法添加设备\n");
-        return; 
+        return;
     }
     printf("---      选择你要添加的类型        ---\n\n");
 
@@ -86,7 +86,18 @@ void AddExperimentalEquipment()
 
         printf("--- 输入购买时间（yyyymmdd）->  ");
         scanf_s("%s", purchase_date, DATE_LENGTH);
+        Category* category = LinkedList_at(rm->category_list, select - 1);
+        ExperimentalEquipment* new_ee = CreateExperimentalEquipment(category, name, room_id, price, purchase_date);
+        if (new_ee == NULL)
+            return;
 
+        LinkedList_pushback(rm->equipment_list, new_ee);
+        LinkedList_pushback(labroom->equipments_list, new_ee->id);
+
+        printf("创建成功！\n设备id: %d\n设备名称: %s\n设备价格: %d 元\n设备购买时间: %d", new_ee->id, name, price, purchase_date);
+        system("pause");
+
+    }
 }
 
 bool ChangeName(ExperimentalEquipment* eq, char* newname)
@@ -97,22 +108,20 @@ bool ChangeName(ExperimentalEquipment* eq, char* newname)
 
 bool ChangePrice(ExperimentalEquipment* eq, char* newprice)
 {
-    eq->price = newprice;
+    eq->price = atoi(newprice);
     return True;
 }
 
 bool ChangeRoom_id(ExperimentalEquipment* eq, char* newroomid)
 {
 	//先在对应实验室的设备链表中删除该设备
-	ResourceManager* resource_manager = GetResourceManage();
-	LinkedList* list = resource_manager->laboratory_list;
-	LabRoom* lab_room1=SeekByRoom_id(list, eq->room_id);
+	LabRoom* lab_room1= RoomId_to_LabRoom(eq->room_id);
 	DeleteEquipment(lab_room1, eq->id);
 
 	eq->room_id = atoi(newroomid);
 
 	//再在新的实验室的设备链表中添加该设备
-	LabRoom* lab_room2 = SeekByRoom_id(list, eq->room_id);
+	LabRoom* lab_room2 = RoomId_to_LabRoom(eq->room_id);
 	AddEquipment(lab_room2, eq->id);
 	return True;
 }
@@ -160,19 +169,7 @@ LinkedList* EFindByRoom_id(LinkedList* eqlist, int roomid)
 	return list;
 }   
 
-        Category* category = LinkedList_at(rm->category_list, select - 1);
-        ExperimentalEquipment* new_ee = CreateExperimentalEquipment(category, name, room_id, price, purchase_date);
-        if (new_ee == NULL)
-            return;
-
-        LinkedList_pushback(rm->equipment_list, new_ee);
-        LinkedList_pushback(labroom->equipments_list, new_ee->id);
-
-        printf("创建成功！\n设备id: %d\n设备名称: %s\n设备价格: %d 元\n设备购买时间: %s", new_ee->id, name, price,purchase_date);
-        system("pause");
-
-    }
-}
+        
 LinkedList* EFindByCategory(LinkedList* eqlist, int categoryid)
 {
 	LinkedList* list = CreateLinkedList();
@@ -180,7 +177,7 @@ LinkedList* EFindByCategory(LinkedList* eqlist, int categoryid)
 	while (temp)
 	{
 		ExperimentalEquipment* eq = (ExperimentalEquipment*)temp->data;
-		if (eq->category.id == categoryid)
+		if (eq->category->id == categoryid)
 			LinkedList_pushback(list, temp);
 		temp = temp->next;
 	}

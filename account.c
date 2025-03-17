@@ -1,7 +1,8 @@
-#include "account.h"
 #include <ctype.h>
 #include <string.h>
 #include "resource_manager.h"
+#include "account.h"
+
 
 
 Account* CreateAccount()

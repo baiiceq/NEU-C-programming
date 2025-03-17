@@ -2,7 +2,6 @@
 #ifndef MANAGEMENT_INTERFACE
 #define MANAGEMENT_INTERFACE
 
-#include "account.h"
 #include "linked_list.h"
 #include "equipment_management.h"
 #include "id_manager.h"

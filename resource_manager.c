@@ -121,7 +121,13 @@ bool LoadEquipmentList()
 	while (!feof(fp))
 	{
 		ExperimentalEquipment* eq = (ExperimentalEquipment*)malloc(sizeof(ExperimentalEquipment));
-		fscanf_s(fp, "%d %s %s %d %d %s\n", &eq->id, str, eq->name, eq->room_id, eq->price, eq->purchase_date);
+		if (eq == NULL)
+		{
+			printf("内存分配失败\n");
+			fclose(fp);
+			return False;
+		}
+		fscanf_s(fp, "%d %s %s %d %d %s\n", &eq->id, str, CATEGORY_LENGTH, eq->name,EQUIPMENT_LENGTH, &eq->room_id, &eq->price, eq->purchase_date,DATE_LENGTH);
 		//缺类别
 		LinkedList_pushback(resource_manager->equipment_list, eq);
 	}

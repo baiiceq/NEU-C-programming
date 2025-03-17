@@ -40,20 +40,6 @@ void AddLabRoom()
     system("pause");
 }
 
-LabRoom* RoomId_to_LabRoom(int room_id)
-{
-    Node* temp = GetResourceManage()->laboratory_list->head;
-
-    while (temp->next)
-    {
-        temp = temp->next;
-        LabRoom* labroom = (LabRoom*)temp->data;
-        if (room_id == labroom->id)
-            return labroom;
-    }
-    return NULL;
-}
-
 
 bool ChangeLabName(LabRoom* lab_room, char* newname)
 {
@@ -84,15 +70,17 @@ bool DeleteEquipment(LabRoom* lab_room, int eqid)
 	return False;
 }
 
-LabRoom* SeekByRoom_id(LinkedList* list, int id)
+LabRoom* RoomId_to_LabRoom(int room_id)
 {
-	Node* temp = list->head->next;
-	while (temp)
-	{
-		LabRoom* room = (LabRoom*)temp->data;
-		if (room->id == id)
-			return room;
-		temp = temp->next;
-	}
-	return NULL;
+    Node* temp = GetResourceManage()->laboratory_list->head;
+
+    while (temp->next)
+    {
+        temp = temp->next;
+        LabRoom* labroom = (LabRoom*)temp->data;
+        if (room_id == labroom->id)
+            return labroom;
+    }
+    return NULL;
 }
+
