@@ -33,12 +33,6 @@
     <ClCompile Include="linked_list.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="account.h">
-      <Filter>头文件</Filter>
-    </ClCompile>
-    <ClCompile Include="login_interface.h">
-      <Filter>头文件\interface%28h%29</Filter>
-    </ClCompile>
     <ClCompile Include="login_interface.c">
       <Filter>源文件\interface</Filter>
     </ClCompile>
@@ -106,6 +100,12 @@
     </ClInclude>
     <ClInclude Include="id_manager.h">
       <Filter>头文件\manager%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="login_interface.h">
+      <Filter>头文件\interface%28h%29</Filter>
+    </ClInclude>
+    <ClInclude Include="account.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

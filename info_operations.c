@@ -53,10 +53,16 @@ void ManageLabRoom()
 	switch (option)
 	{
 	case 0:
-		return;
+		break;
 	case 1:
 		AddLabRoom();
-		return;
+		break;
+	case 2:
+		DeleteLabRoom();
+		break;
+	case 3:
+		ChangeLabRoom();
+		break;
 	default:
 		break;
 	}

@@ -5,6 +5,7 @@
 #include "configs.h"
 #include "linked_list.h"
 #include "experimental_equipment.h"
+#include "account.h"
 
 typedef struct _LabRoom {
     int id;                            // ·¿¼ä±àºÅ
@@ -19,10 +20,12 @@ void DestoryLabRoom(LabRoom* lab_room);
 
 void AddLabRoom();
 
-LabRoom* RoomId_to_LabRoom(int room_id);
-
+bool DeleteLabRoom();
 bool ChangeLabName(LabRoom* lab_room, char* newname);
 bool AddEquipment(LabRoom* lab_room, int eqid);
 bool DeleteEquipment(LabRoom* lab_room, int eqid);
+bool DeleteTechnician(LabRoom* lab_room, int techid);
+bool AddTechnician(LabRoom* lab_room, int techid);
+LabRoom* RoomId_to_LabRoom(int room_id);
 
 #endif // !LAB_ROOM_H

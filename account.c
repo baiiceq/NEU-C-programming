@@ -72,6 +72,19 @@ Account* FindByUsername(char* username)
 	}	
 	return NULL;
 }
+Account* FindById(int id)
+{
+	ResourceManager* resource_manager = GetResourceManage();
+	Node* temp = resource_manager->account_list->head->next;
+	while (temp)
+	{
+		Account* account = (Account*)temp->data;
+		if (account->id == id)
+			return account;
+		temp = temp->next;
+	}
+	return NULL;
+}
 
 bool IsValidPassword(char* password)
 {

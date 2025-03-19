@@ -35,6 +35,8 @@ bool ValidAccount(Account* account);
 bool IsValidUsername(char* username);
 
 Account* FindByUsername(char* username);
+Account* FindById(int id);
+
 
 bool IsValidPassword(char* password);
 

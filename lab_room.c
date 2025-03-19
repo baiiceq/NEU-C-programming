@@ -40,15 +40,120 @@ void AddLabRoom()
     system("pause");
 }
 
+bool DeleteLabRoom()
+{
+    printf("请输入要删除的实验室编号\n");
+    int room_id;
+    scanf_s("%d", &room_id);
+	Node* temp = GetResourceManage()->laboratory_list->head;
+	while (temp->next)
+	{
+		LabRoom* labroom = (LabRoom*)temp->next->data;
+		if (room_id == labroom->id)
+		{
+            Node* temp2 = temp->next;
+			temp->next = temp->next->next;
+            free(temp2);
+			printf("删除成功\n");
+			system("pause");
+            return True;
+		}
+		temp = temp->next;
+	}
+	printf("需删除的实验室不存在\n");
+	return False;
+}
+
+bool ChangeLabRoom()
+{
+	printf("请输入要修改的实验室编号\n");
+	int room_id;
+	scanf_s("%d", &room_id);
+	LabRoom* labroom = RoomId_to_LabRoom(room_id);
+	if (labroom == NULL)
+	{
+		printf("该实验室不存在\n");
+		return False;
+	}
+	while (1)
+	{
+		system("cls");
+
+		printf("---            选择要进行的操作         ---\n");
+		printf("---            1. 修改实验室名称               ---\n");
+		printf("---            2. 在该实验室添加设备           ---\n");
+		printf("---            3. 在该实验室删除设备           ---\n");
+		printf("---            4. 在该实验室添加实验员         ---\n");
+		printf("---            5. 在该实验室删除实验员         ---\n");
+		printf("---            0. 取消               ---\n");
+		printf("--- 选择->");
+
+		int option = 0;
+		scanf_s("%d", &option);
+		switch (option)
+		{
+		case 1:
+		{
+			printf("请输入新的实验室名称(无需更改可回车跳过)\n");
+			char newname[LABROOM_LENGTH] = "";
+			fgets(newname, LABROOM_LENGTH, stdin);
+			ChangeLabName(labroom, newname);
+			break;
+		}
+		case 2:
+		{
+			printf("请输入要在该实验室添加的设备id(无需更改可回车跳过)\n");
+			int eqid = 0;
+			scanf_s("%d", &eqid);
+			getchar();
+			AddEquipment(labroom, eqid);
+			break;
+		}
+		case 3:
+		{
+			printf("请输入要在该实验室删除的设备id(无需更改可回车跳过)\n");
+			int eqid = 0;
+			scanf_s("%d", &eqid);
+			getchar();
+			DeleteEquipment(labroom, eqid);
+		}
+		case 4:
+		{
+			printf("请输入要在该实验室添加的实验员id(无需更改可回车跳过)\n");
+			int techid = 0;
+			scanf_s("%d", &techid);
+			getchar();
+			AddTechnician(labroom, techid);
+			break;
+		}
+		case 5:
+		{
+			printf("请输入要在该实验室删除的实验员id(无需更改可回车跳过)\n");
+			int techid = 0;
+			scanf_s("%d", &techid);
+			getchar();
+			DeleteTechnician(labroom, techid);
+			break;
+		}
+		case 0:
+			return True;
+		}
+	}
+	
+}
 
 bool ChangeLabName(LabRoom* lab_room, char* newname)
 {
+	if(strcmp(newname,"\n")==0)
+		return False;
 	strcpy_s(lab_room->name, LABROOM_LENGTH, newname);
 	return True;
 }
 
 bool AddEquipment(LabRoom* lab_room, int eqid)
 {
+	if (eqid == 0)
+		return False;
 	ExperimentalEquipment* eq=EFindById(GetResourceManage()->equipment_list, eqid);
 	LinkedList_pushback(lab_room->equipments_list, eq);
 	return True;
@@ -56,6 +161,8 @@ bool AddEquipment(LabRoom* lab_room, int eqid)
 
 bool DeleteEquipment(LabRoom* lab_room, int eqid)
 {
+	if (eqid == 0)
+		return False;
 	Node* temp = lab_room->equipments_list->head;
 	while (temp->next)
 	{
@@ -65,8 +172,42 @@ bool DeleteEquipment(LabRoom* lab_room, int eqid)
 			temp->next = temp->next->next;
 			return True;
 		}
+		temp = temp->next;
 	}
 	printf("需删除的设备不存在\n");
+	return False;
+}
+
+bool AddTechnician(LabRoom* lab_room, int techid)
+{
+	if (techid == 0)
+		return False;
+	Account* tech = FindById(techid);
+	if (tech == NULL)
+	{
+		printf("该实验员不存在\n");
+		return False;
+	}
+	LinkedList_pushback(lab_room->technician_id_list, tech);
+	return True;
+}
+
+bool DeleteTechnician(LabRoom* lab_room, int techid)
+{
+	if (techid == 0)
+		return False;
+	Node* temp = lab_room->technician_id_list->head;
+	while (temp->next)
+	{
+		Account* tech = (Account*)temp->next->data;
+		if (tech->id == techid)
+		{
+			temp->next = temp->next->next;
+			return True;
+		}
+		temp = temp->next;
+	}
+	printf("需删除的实验员不存在\n");
 	return False;
 }
 
