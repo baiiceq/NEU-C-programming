@@ -7,6 +7,7 @@
 #include "id_manager.h"
 #include "info_operations.h"
 
+
 int ShowManagementMenu(AccountType account_type);
 
 void RunManagementInterface(int option, EquipmentManagement* em, AccountType account_type);

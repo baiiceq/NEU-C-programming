@@ -1,4 +1,5 @@
 #include "management_interface.h"
+#include "query.h"
 
 
 int ShowManagementMenu(AccountType account_type)
@@ -57,6 +58,9 @@ void RunManagementInterface(int option, EquipmentManagement* em, AccountType acc
         case 1:
             BasicInformationManagement();
             break;
+        case 3:
+            QueryInformation();
+            break;
         default:
             break;
         }
@@ -91,6 +95,38 @@ void RunManagementInterface(int option, EquipmentManagement* em, AccountType acc
 
 void QueryInformation()
 {
+    system("cls");
+
+    printf("---             信息查询           ---\n\n");
+    printf("---        请选择你要查询的信息      ---\n");
+    printf("---          1. 实验室               ---\n");
+    printf("---          2. 实验员               ---\n");
+    printf("---          3. 实验设备类别         ---\n");
+    printf("---          4. 实验设备             ---\n");
+    printf("---          0. 返  回               ---\n");
+    printf("选择->");
+
+    int option = 0;
+    scanf_s("%d", &option);
+
+    switch (option)
+    {
+    case 0:
+        return;
+    case 1:
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    case 4:
+        QueryEquipmentMenu();
+        break;
+    default:
+        printf("非法指令\n");
+        system("pause");
+        break;
+    }
 }
 
 void SortInformation()
@@ -107,41 +143,41 @@ void SystemMaintenance(AccountType account_type)
 
 void BasicInformationManagement()
 {
-        system("cls");
+    system("cls");
 
-        printf("---            基本信息管理          ---\n\n");
-        printf("---        请选择你要管理的信息      ---\n");
-        printf("---          1. 实验室               ---\n");
-        printf("---          2. 实验员               ---\n");
-        printf("---          3. 实验设备类别         ---\n");
-        printf("---          4. 实验设备             ---\n");
-        printf("---          0. 返  回               ---\n");
-        printf("选择->");
+    printf("---            基本信息管理          ---\n\n");
+    printf("---        请选择你要管理的信息      ---\n");
+    printf("---          1. 实验室               ---\n");
+    printf("---          2. 实验员               ---\n");
+    printf("---          3. 实验设备类别         ---\n");
+    printf("---          4. 实验设备             ---\n");
+    printf("---          0. 返  回               ---\n");
+    printf("选择->");
 
-        int option = 0;
-        scanf_s("%d", &option);
+    int option = 0;
+    scanf_s("%d", &option);
 
-        switch (option)
-        {
-        case 0:
-            return;
-        case 1:
-            ManageLabRoom();
-            break;
-        case 2:
-            ManageAccount();
-            break;
-        case 3:
-            ManageCategory();
-            break;
-        case 4:
-            ManageExperimentalEquipment();
-            break;
-        default:
-            printf("非法指令\n");
-            system("pause");
-            break;
-        }
+    switch (option)
+    {
+    case 0:
+        return;
+    case 1:
+        ManageLabRoom();
+        break;
+    case 2:
+        ManageAccount();
+        break;
+    case 3:
+        ManageCategory();
+        break;
+    case 4:
+        ManageExperimentalEquipment();
+        break;
+    default:
+        printf("非法指令\n");
+        system("pause");
+        break;
+    }
 }
 
 void AdjustmentInformation()
