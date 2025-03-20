@@ -57,6 +57,11 @@ void RunManagementInterface(int option, EquipmentManagement* em, AccountType acc
         case 1:
             BasicInformationManagement();
             break;
+        case 3: 
+        {
+            QueryInformation();
+            break;
+        }
         default:
             break;
         }
@@ -91,6 +96,7 @@ void RunManagementInterface(int option, EquipmentManagement* em, AccountType acc
 
 void QueryInformation()
 {
+    FindExperimentalEquipment();
 }
 
 void SortInformation()

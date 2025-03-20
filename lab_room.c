@@ -90,6 +90,7 @@ bool ChangeLabRoom()
 
 		int option = 0;
 		scanf_s("%d", &option);
+		getchar();
 		switch (option)
 		{
 		case 1:
@@ -116,6 +117,7 @@ bool ChangeLabRoom()
 			scanf_s("%d", &eqid);
 			getchar();
 			DeleteEquipment(labroom, eqid);
+			break;
 		}
 		case 4:
 		{
@@ -138,15 +140,19 @@ bool ChangeLabRoom()
 		case 0:
 			return True;
 		}
+		system("pause");
 	}
 	
 }
 
 bool ChangeLabName(LabRoom* lab_room, char* newname)
 {
-	if(strcmp(newname,"\n")==0)
-		return False;
+	printf("%s",newname);
+	if (strcmp(newname, "\n") == 0)
+	{		return False;
+	}
 	strcpy_s(lab_room->name, LABROOM_LENGTH, newname);
+	printf("修改成功\n");
 	return True;
 }
 
@@ -154,8 +160,15 @@ bool AddEquipment(LabRoom* lab_room, int eqid)
 {
 	if (eqid == 0)
 		return False;
-	ExperimentalEquipment* eq=EFindById(GetResourceManage()->equipment_list, eqid);
+	LinkedList* temp=EFindById(GetResourceManage()->equipment_list, eqid);
+	if (temp->head->next == NULL)
+	{
+		printf("该设备不存在\n");
+		return False;
+	}
+	ExperimentalEquipment* eq = (ExperimentalEquipment*)temp->head->next->data;
 	LinkedList_pushback(lab_room->equipments_list, eq);
+	printf("添加成功\n");
 	return True;
 }
 
