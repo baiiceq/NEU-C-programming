@@ -50,6 +50,7 @@ bool SaveId()
     if (fp == NULL)
     {
         printf("文件打开失败\n");
+        system("pause");
         return False;
     }
     fprintf(fp, "%d %d %d %d\n",instance->current_account_id,

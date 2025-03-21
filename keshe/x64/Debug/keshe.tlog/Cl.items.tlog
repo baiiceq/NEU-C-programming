@@ -1,9 +1,12 @@
 F:\m\code\keshe\account.c;F:\m\code\keshe\keshe\x64\Debug\account.obj
-F:\m\code\keshe\account.h;F:\m\code\keshe\keshe\x64\Debug\account.obj
+F:\m\code\keshe\category.c;F:\m\code\keshe\keshe\x64\Debug\category.obj
 F:\m\code\keshe\equipment_management.c;F:\m\code\keshe\keshe\x64\Debug\equipment_management.obj
+F:\m\code\keshe\experimental_equipment.c;F:\m\code\keshe\keshe\x64\Debug\experimental_equipment.obj
+F:\m\code\keshe\id_manager.c;F:\m\code\keshe\keshe\x64\Debug\id_manager.obj
+F:\m\code\keshe\info_operations.c;F:\m\code\keshe\keshe\x64\Debug\info_operations.obj
+F:\m\code\keshe\lab_room.c;F:\m\code\keshe\keshe\x64\Debug\lab_room.obj
 F:\m\code\keshe\linked_list.c;F:\m\code\keshe\keshe\x64\Debug\linked_list.obj
 F:\m\code\keshe\login_interface.c;F:\m\code\keshe\keshe\x64\Debug\login_interface.obj
-F:\m\code\keshe\login_interface.h;F:\m\code\keshe\keshe\x64\Debug\login_interface.obj
 F:\m\code\keshe\main.c;F:\m\code\keshe\keshe\x64\Debug\main.obj
 F:\m\code\keshe\management_interface.c;F:\m\code\keshe\keshe\x64\Debug\management_interface.obj
 F:\m\code\keshe\register_interface.c;F:\m\code\keshe\keshe\x64\Debug\register_interface.obj

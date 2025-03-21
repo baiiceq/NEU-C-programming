@@ -1,6 +1,10 @@
-﻿  account.c
-  management_interface.c
-  正在生成代码...
+﻿  management_interface.c
+F:\m\code\keshe\query.h(170,23): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“management_interface.c”)
+  
+F:\m\code\keshe\query.h(171,23): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  (编译源文件“management_interface.c”)
+  
   keshe.vcxproj -> F:\m\code\keshe\x64\Debug\keshe.exe
   'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
   或批处理文件。

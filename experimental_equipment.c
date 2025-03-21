@@ -126,62 +126,6 @@ bool ChangeRoom_id(ExperimentalEquipment* eq, char* newroomid)
 	return True;
 }
 
-bool FindExperimentalEquipment()
-{
-	LinkedList* eqlist = GetResourceManage()->equipment_list;
-	printf("请按顺序输入查找条件，不需要的条件请回车跳过\n");
-	printf("设备名称：\n");
-	char name[EQUIPMENT_LENGTH];
-	fgets(name, EQUIPMENT_LENGTH, stdin);
-    eqlist = EFindByName(eqlist, name);
-	printf("设备ID：\n");
-	int id=0;
-	scanf_s("%d", &id);
-    getchar();
-	eqlist = EFindById(eqlist, id);
-	printf("实验室ID：\n");
-    id = 0;
-	scanf_s("%d", &id);
-	getchar();
-	eqlist = EFindByRoom_id(eqlist, id);
-	printf("设备类别ID：\n");
-	id = 0;
-	scanf_s("%d", &id);
-	getchar();
-	eqlist = EFindByCategory(eqlist, id);
-	printf("购买起始时间:格式xxxx-xx-xx\n");
-	char start[DATE_LENGTH];
-	char end[DATE_LENGTH];
-	fgets(start, DATE_LENGTH, stdin);
-	printf("购买结束时间:格式xxxx-xx-xx\n");
-	fgets(end, DATE_LENGTH, stdin);
-	eqlist = EFindByDate(eqlist, start, end);
-	printf("价格区间：\n");
-	int min = 0;
-	int max = 0;
-	scanf_s("%d %d", &min, &max);
-	getchar();
-	eqlist = EFindByPrice(eqlist, min, max);
-	if (eqlist->head->next == NULL)
-	{
-		printf("未找到符合条件的设备\n");
-		system("pause");
-		return False;
-	}
-	else
-	{
-		printf("找到的设备如下：\n");
-		Node* temp = eqlist->head->next;
-		while (temp)
-		{
-			ExperimentalEquipment* eq = (ExperimentalEquipment*)temp->data;
-			printf("设备ID：%d\n设备名称：%s\n设备价格：%d\n设备购买时间：%s\n", eq->id, eq->name, eq->price, eq->purchase_date);
-			temp = temp->next;
-		}
-		system("pause");   //等待后期整合
-		return True;
-	}
-}
 
 //E表示equipment的查找
 LinkedList* EFindByName(LinkedList* eqlist,char* name)
