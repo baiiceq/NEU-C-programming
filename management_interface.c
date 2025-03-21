@@ -100,7 +100,7 @@ void QueryInformation()
     printf("---             信息查询           ---\n\n");
     printf("---        请选择你要查询的信息      ---\n");
     printf("---          1. 实验室               ---\n");
-    printf("---          2. 实验员               ---\n");
+    printf("---          2. 账户                 ---\n");
     printf("---          3. 实验设备类别         ---\n");
     printf("---          4. 实验设备             ---\n");
     printf("---          0. 返  回               ---\n");
@@ -114,10 +114,13 @@ void QueryInformation()
     case 0:
         return;
     case 1:
+        QueryLabroomMenu();
         break;
     case 2:
+        QueryAccountMenu();
         break;
     case 3:
+        QueryCategoryMenu();
         break;
     case 4:
         QueryEquipmentMenu();
