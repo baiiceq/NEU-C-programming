@@ -21,4 +21,6 @@ Category* CreateCategory(char* name, int disposal_years);
 void DestoryCategory(Category* category);
 
 void AddCategory();
+Category* FindCategoryById(int id);
+
 #endif // !CATEGORY_H

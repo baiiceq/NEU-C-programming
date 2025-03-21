@@ -20,6 +20,7 @@ void DestoryLabRoom(LabRoom* lab_room);
 
 void AddLabRoom();
 
+bool ChangeLabRoom();
 bool DeleteLabRoom();
 bool ChangeLabName(LabRoom* lab_room, char* newname);
 bool AddEquipment(LabRoom* lab_room, int eqid);

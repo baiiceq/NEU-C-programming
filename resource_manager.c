@@ -1,5 +1,6 @@
 #include "resource_manager.h"
 #include "account.h"
+#include "category.h"
 #include "experimental_equipment.h"
 #include <string.h>
 
@@ -29,7 +30,7 @@ void LoadResource()
 	LoadAccountList();
 	LoadCategoryList();
 	LoadEquipmentList();
-	LoadLaboratoryList();
+	//LoadLaboratoryList();
 }
 
 void SaveResource()
@@ -68,8 +69,11 @@ bool LoadAccountList()
 			printf("内存分配失败\n");
 			return False;
 		}
-		fscanf_s(fp, "%s %s %s\n", str,15, account->user_name, USER_NMAE_LENGTH, account->user_password, USER_PASSWORD_LENGTH);
+		fscanf_s(fp, "%s %s %s\n", str,15, account->user_name, 
+			USER_NMAE_LENGTH, account->user_password, USER_PASSWORD_LENGTH);
 		str[strlen(str)] = '\0';
+		account->user_name[strlen(account->user_name)] = '\0';
+		account->user_password[strlen(account->user_password)] = '\0';
 		if (strcmp(str, "Admin") == 0)
 			account->account_type = Admin;
 		else if (strcmp(str, "Experimenter") == 0)
@@ -117,7 +121,7 @@ bool LoadEquipmentList()
 		return False;
 	}
 	ResourceManager* resource_manager = GetResourceManage();
-	char str[CATEGORY_LENGTH];
+	int category_id = 0;
 	while (!feof(fp))
 	{
 		ExperimentalEquipment* eq = (ExperimentalEquipment*)malloc(sizeof(ExperimentalEquipment));
@@ -127,8 +131,13 @@ bool LoadEquipmentList()
 			fclose(fp);
 			return False;
 		}
-		fscanf_s(fp, "%d %s %s %d %d %s\n", &eq->id, str, CATEGORY_LENGTH, eq->name,EQUIPMENT_LENGTH, &eq->room_id, &eq->price, eq->purchase_date,DATE_LENGTH);
-		//缺类别
+		fscanf_s(fp, "%d %d ", &eq->id, &category_id);
+		fscanf_s(fp, "%s ", eq->name, EQUIPMENT_LENGTH);
+		fscanf_s(fp, "%d %d ", &eq->room_id, &eq->price);
+		fscanf_s(fp, "%s\n", eq->purchase_date, DATE_LENGTH);
+		eq->name[strlen(eq->name)] = '\0';
+		eq->purchase_date[strlen(eq->purchase_date)] = '\0';
+		eq->category = FindCategoryById(category_id);
 		LinkedList_pushback(resource_manager->equipment_list, eq);
 	}
 	fclose(fp);
@@ -137,25 +146,149 @@ bool LoadEquipmentList()
 
 bool SaveEquipmentList()
 {
+	FILE* fp = fopen("equipment.txt", "w");
+	if (fp == NULL)
+	{
+		printf("文件打开失败\n");
+		return False;
+	}
+	Node* temp = GetResourceManage()->equipment_list->head->next;
+	while (temp)
+	{
+		ExperimentalEquipment* eq = (ExperimentalEquipment*)temp->data;
+		fprintf(fp, "%d %d %s %d %d %s\n", eq->id, eq->category->id, eq->name,
+			eq->room_id, eq->price, eq->purchase_date);
+		temp = temp->next;
+	}
+	fclose(fp);
 	return False;
 }
 
 bool LoadCategoryList()
 {
+	FILE* fp = fopen("category.txt", "r");
+	if (fp == NULL)
+	{
+		perror("文件打开失败\n");
+		return False;
+	}
+	ResourceManager* resource_manager = GetResourceManage();
+	while (!feof(fp))
+	{
+		Category* category = (Category*)malloc(sizeof(Category));
+		if (category == NULL)
+		{
+			printf("内存分配失败\n");
+			fclose(fp);
+			return False;
+		}
+		fscanf_s(fp, "%d %s %d\n", &category->id,  category->name,CATEGORY_LENGTH, 
+			&category->disposal_years);
+		category->name[strlen(category->name)] = '\0';
+		LinkedList_pushback(resource_manager->category_list, category);
+	}
+	fclose(fp);
 	return False;
 }
 
 bool SaveCategoryList()
 {
+	FILE* fp = fopen("category.txt", "w");
+	if (fp == NULL)
+	{
+		printf("文件打开失败\n");
+		return False;
+	}
+	Node* temp = GetResourceManage()->category_list->head->next;
+	while (temp)
+	{
+		Category* category = (Category*)temp->data;
+		fprintf(fp, "%d %s %d\n", category->id, category->name, category->disposal_years);
+		temp = temp->next;
+	}
+	fclose(fp);
 	return False;
 }
 
 bool LoadLaboratoryList()
 {
+	FILE* fp = fopen("laboratory.txt", "r");
+	if (fp == NULL)
+	{
+		printf("文件打开失败\n");
+		return False;
+	}
+	ResourceManager* resource_manager = GetResourceManage();
+	char delim[] = ", \n";
+	while (!feof(fp))
+	{
+		LabRoom* laboratory = (LabRoom*)malloc(sizeof(LabRoom));
+		if (laboratory == NULL)
+		{
+			printf("内存分配失败\n");
+			fclose(fp);
+			return False;
+		}
+		char str1[LABROOM_LENGTH] = "";
+		char str2[LABRROM_LINKEDLIST_LENGTH] = "";
+		fscanf_s(fp, "%d %s %s %s\n", &laboratory->id, laboratory->name, LABROOM_LENGTH,
+			str1, LABROOM_LENGTH, str2, LABRROM_LINKEDLIST_LENGTH);
+		laboratory->name[strlen(laboratory->name)] = '\0';
+		//按逗号分割字符串
+		
+		laboratory->technician_id_list = CreateLinkedList();
+		char* token;
+		char* context = NULL;
+		token = strtok_s(str1, delim, &context);
+		while (token)
+		{
+			int id = atoi(token);
+			LinkedList_pushback(laboratory->technician_id_list, id);
+			token = strtok_s(NULL, delim, &context);
+		}
+		laboratory->equipments_list = CreateLinkedList();
+		context = NULL;
+		token = strtok_s(str2, delim, &context);
+		while (token)
+		{
+			int id = atoi(token);
+			LinkedList_pushback(laboratory->equipments_list, id);
+			token = strtok_s(NULL, delim, &context);
+		}
+		LinkedList_pushback(resource_manager->laboratory_list, laboratory);
+		fclose(fp);
+	}
 	return False;
 }
 
 bool SaveLaboratoryList()
 {
+	FILE* fp = fopen("laboratory.txt", "w");
+	if (fp == NULL)
+	{
+		printf("文件打开失败\n");
+		return False;
+	}
+	Node* temp = GetResourceManage()->laboratory_list->head->next;
+	while (temp)
+	{
+		LabRoom* laboratory = (LabRoom*)temp->data;
+		fprintf(fp, "%d %s ", laboratory->id, laboratory->name);
+		Node* temp1 = laboratory->technician_id_list->head->next;
+		while (temp1)
+		{
+			fprintf(fp, "%d,", *(int*)temp1->data);
+			temp1 = temp1->next;
+		}
+		fprintf(fp, " ");
+		temp1 = laboratory->equipments_list->head->next;
+		while (temp1)
+		{
+			fprintf(fp, "%d,", *(int*)temp1->data);
+			temp1 = temp1->next;
+		}
+		fprintf(fp, "\n");
+		temp = temp->next;
+	}
 	return False;
 }

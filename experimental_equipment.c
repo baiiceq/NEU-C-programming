@@ -94,7 +94,8 @@ void AddExperimentalEquipment()
         LinkedList_pushback(rm->equipment_list, new_ee);
         LinkedList_pushback(labroom->equipments_list, new_ee->id);
 
-        printf("创建成功！\n设备id: %d\n设备名称: %s\n设备价格: %d 元\n设备购买时间: %d", new_ee->id, name, price, purchase_date);
+        printf("创建成功！\n设备id: %d\n设备名称: %s\n设备价格: %d 元\n设备购买时间: %s", 
+            new_ee->id, name, price, purchase_date);
         system("pause");
 
     }

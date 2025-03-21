@@ -1,0 +1,2 @@
+1 printer 5
+2 desktop 10

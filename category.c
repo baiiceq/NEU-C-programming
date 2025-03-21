@@ -40,3 +40,16 @@ void AddCategory()
     printf("创建成功！\n类型id: %d\n类型名称: %s\n报废年限: %d 年\n", new_category->id, name, disposal_years);
     system("pause");
 }
+
+Category* FindCategoryById(int id)
+{
+	Node* temp = GetResourceManage()->category_list->head->next;
+	while (temp)
+	{
+		Category* category = (Category*)temp->data;
+		if (category->id == id)
+			return category;
+		temp = temp->next;
+	}
+	return NULL;
+}

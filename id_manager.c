@@ -22,16 +22,16 @@ int GetNewId(IdType type)
     switch (type)
     {
     case AccountID:
-        return instance->current_account_id++;
+        return ++instance->current_account_id;
         break;
     case CategoryID:
-        return instance->current_category_id++;
+        return ++instance->current_category_id;
         break;
     case EquipmentID:
-        return instance->current_equipment_id++;
+        return ++instance->current_equipment_id;
         break;
     case RoomID:
-        return instance->current_room_id++;
+        return ++instance->current_room_id;
         break;
     }
 }
@@ -50,7 +50,7 @@ bool SaveId()
     if (fp == NULL)
     {
         printf("文件打开失败\n");
-        system("pause");
+        //system("pause");
         return False;
     }
     fprintf(fp, "%d %d %d %d\n",instance->current_account_id,
