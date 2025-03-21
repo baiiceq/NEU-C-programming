@@ -10,6 +10,7 @@ typedef enum _AccountType
 	Admin,         // 管理员
 	Experimenter,  // 实验员
 	User,          // 一般用户
+	Unknow = -1
 }AccountType;
 
 typedef struct _Account
