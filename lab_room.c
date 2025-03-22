@@ -201,7 +201,15 @@ bool AddTechnician(LabRoom* lab_room, int techid)
 		printf("该实验员不存在\n");
 		return False;
 	}
-	LinkedList_pushback(lab_room->technician_id_list, tech);
+	LinkedList_pushback(lab_room->technician_id_list, &tech->id);
+	if (tech->roomid != -1)
+	{
+		LabRoom* old_labroom = RoomId_to_LabRoom(tech->roomid);
+		if (old_labroom != NULL)
+		{
+			DeleteTechnician(old_labroom, techid);
+		}
+	}
 	tech->roomid = lab_room->id;
 	return True;
 }
@@ -213,10 +221,10 @@ bool DeleteTechnician(LabRoom* lab_room, int techid)
 	Node* temp = lab_room->technician_id_list->head;
 	while (temp->next)
 	{
-		Account* tech = (Account*)temp->next->data;
-		if (tech->id == techid)
+		int* tech = (int*)temp->next->data;
+		if (*tech == techid)
 		{
-			tech->roomid = -1;
+			FindById(techid)->roomid = -1;
 			temp->next = temp->next->next;
 			return True;
 		}

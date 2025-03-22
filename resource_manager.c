@@ -243,26 +243,32 @@ bool LoadLaboratoryList()
 		//°´¶ººÅ·Ö¸î×Ö·û´®
 		
 		laboratory->technician_id_list = CreateLinkedList();
-		char* token;
+		char* token=NULL;
 		char* context = NULL;
-		token = strtok_s(str1, delim, &context);
-		while (token)
+		if (!strcmp(str1, "-1,") == 0)
 		{
-			int id = atoi(token);
-			Account* tech = FindById(id);
-			LinkedList_pushback(laboratory->technician_id_list, &tech->id);
-			token = strtok_s(NULL, delim, &context);
+			token = strtok_s(str1, delim, &context);
+			while (token)
+			{
+				int id = atoi(token);
+				Account* tech = FindById(id);
+				LinkedList_pushback(laboratory->technician_id_list, &tech->id);
+				token = strtok_s(NULL, delim, &context);
+			}
 		}
 		laboratory->equipments_list = CreateLinkedList();
-		context = NULL;
-		token = strtok_s(str2, delim, &context);
-		while (token)
+		if (!strcmp(str2, "-1,") == 0)
 		{
-			int id = atoi(token);
-			ExperimentalEquipment* eq = (ExperimentalEquipment*)(EFindById(GetResourceManage()->equipment_list, id)
-				->head->next->data);
-			LinkedList_pushback(laboratory->equipments_list, &eq->id);
-			token = strtok_s(NULL, delim, &context);
+			context = NULL;
+			token = strtok_s(str2, delim, &context);
+			while (token)
+			{
+				int id = atoi(token);
+				ExperimentalEquipment* eq = (ExperimentalEquipment*)(EFindById(GetResourceManage()->equipment_list, id)
+					->head->next->data);
+				LinkedList_pushback(laboratory->equipments_list, &eq->id);
+				token = strtok_s(NULL, delim, &context);
+			}
 		}
 		LinkedList_pushback(resource_manager->laboratory_list, laboratory);
 	}
@@ -284,19 +290,29 @@ bool SaveLaboratoryList()
 		LabRoom* laboratory = (LabRoom*)temp->data;
 		fprintf(fp, "%d %s ", laboratory->id, laboratory->name);
 		Node* temp1 = laboratory->technician_id_list->head->next;
-		while (temp1)
+		if (temp1 == NULL)
+			fprintf(fp,"-1,");
+		else
 		{
-			int* id = (int*)temp1->data;
-			fprintf(fp, "%d,", *id);
-			temp1 = temp1->next;
+			while (temp1)
+			{
+				int* id = (int*)temp1->data;
+				fprintf(fp, "%d,", *id);
+				temp1 = temp1->next;
+			}
 		}
 		fprintf(fp, " ");
 		temp1 = laboratory->equipments_list->head->next;
-		while (temp1)
+		if(temp1==NULL)
+			fprintf(fp, "-1,");
+		else 
 		{
-			int* id = (int*)temp1->data;
-			fprintf(fp, "%d,", *id);
-			temp1 = temp1->next;
+			while (temp1)
+			{
+				int* id = (int*)temp1->data;
+				fprintf(fp, "%d,", *id);
+				temp1 = temp1->next;
+			}
 		}
 		fprintf(fp, "\n");
 		temp = temp->next;
