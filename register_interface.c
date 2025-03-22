@@ -86,5 +86,7 @@ Account* AccountRegister()
 		free(account);
 		return NULL;
     }
+	account->id = GetNewId(AccountID);
+    account->roomid = -1;
     return account;
 }

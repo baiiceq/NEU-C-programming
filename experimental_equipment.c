@@ -92,7 +92,7 @@ void AddExperimentalEquipment()
             return;
 
         LinkedList_pushback(rm->equipment_list, new_ee);
-        LinkedList_pushback(labroom->equipments_list, new_ee->id);
+        LinkedList_pushback(labroom->equipments_list, &(new_ee->id));
 
         printf("创建成功！\n设备id: %d\n设备名称: %s\n设备价格: %d 元\n设备购买时间: %s", 
             new_ee->id, name, price, purchase_date);
@@ -141,7 +141,7 @@ LinkedList* EFindByName(LinkedList* eqlist,char* name)
     {
         ExperimentalEquipment* eq = (ExperimentalEquipment*)temp->data;
         if (strcmp(eq->name, name))
-            LinkedList_pushback(list, temp);
+            LinkedList_pushback(list, eq);
         temp = temp-> next;
     }
 	//为合理利用内存，适时的销毁链表
@@ -164,7 +164,7 @@ LinkedList* EFindById(LinkedList* eqlist, int id)
 	{
 		ExperimentalEquipment* eq = (ExperimentalEquipment*)temp->data;
 		if (eq->id == id)
-			LinkedList_pushback(list, temp);
+			LinkedList_pushback(list, eq);
 		temp = temp->next;
 	}
     //为合理利用内存，适时的销毁链表
@@ -187,7 +187,7 @@ LinkedList* EFindByRoom_id(LinkedList* eqlist, int roomid)
 	{
 		ExperimentalEquipment* eq = (ExperimentalEquipment*)temp->data;
 		if (eq->room_id == roomid)
-			LinkedList_pushback(list, temp);
+			LinkedList_pushback(list, eq);
 		temp = temp->next;
 	}
     //为合理利用内存，适时的销毁链表
@@ -211,7 +211,7 @@ LinkedList* EFindByCategory(LinkedList* eqlist, int categoryid)
 	{
 		ExperimentalEquipment* eq = (ExperimentalEquipment*)temp->data;
 		if (eq->category->id == categoryid)
-			LinkedList_pushback(list, temp);
+			LinkedList_pushback(list, eq);
 		temp = temp->next;
 	}
     //为合理利用内存，适时的销毁链表
@@ -242,7 +242,7 @@ LinkedList* EFindByDate(LinkedList* eqlist, char* start, char* end)
 	{
 		ExperimentalEquipment* eq = (ExperimentalEquipment*)temp->data;
 		if (strcmp(eq->purchase_date, start) >= 0 && strcmp(eq->purchase_date, end) <= 0)
-			LinkedList_pushback(list, temp);
+			LinkedList_pushback(list,eq);
 		temp = temp->next;
 	}
     //为合理利用内存，适时的销毁链表
@@ -269,7 +269,7 @@ LinkedList* EFindByPrice(LinkedList* eqlist, int min, int max)
 	{
 		ExperimentalEquipment* eq = (ExperimentalEquipment*)temp->data;
 		if (eq->price >= min && eq->price <= max)
-			LinkedList_pushback(list, temp);
+			LinkedList_pushback(list, eq);
 		temp = temp->next;
 	}
     //为合理利用内存，适时的销毁链表

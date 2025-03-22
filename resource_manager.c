@@ -30,7 +30,7 @@ void LoadResource()
 	LoadAccountList();
 	LoadCategoryList();
 	LoadEquipmentList();
-	//LoadLaboratoryList();
+	LoadLaboratoryList();
 }
 
 void SaveResource()
@@ -69,17 +69,20 @@ bool LoadAccountList()
 			printf("内存分配失败\n");
 			return False;
 		}
-		fscanf_s(fp, "%s %s %s\n", str,15, account->user_name, 
-			USER_NMAE_LENGTH, account->user_password, USER_PASSWORD_LENGTH);
+		fscanf_s(fp, "%d %s %s %s %d\n",&account->id, str,15, account->user_name, 
+			USER_NMAE_LENGTH, account->user_password, USER_PASSWORD_LENGTH,&account->roomid);
+
 		str[strlen(str)] = '\0';
 		account->user_name[strlen(account->user_name)] = '\0';
 		account->user_password[strlen(account->user_password)] = '\0';
+
 		if (strcmp(str, "Admin") == 0)
 			account->account_type = Admin;
 		else if (strcmp(str, "Experimenter") == 0)
 			account->account_type = Experimenter;
 		else if (strcmp(str, "user") == 0)
 			account->account_type = User;
+
 		LinkedList_pushback(resource_manager->account_list, account);
 	}   
 	fclose(fp);
@@ -105,7 +108,8 @@ bool SaveAccountList()
 			strcpy_s(str, 15,"Experimenter");
 		else if (account->account_type == User)
 			strcpy_s(str,15, "User");
-		fprintf(fp, "%s %s %s\n", str, account->user_name, account->user_password);
+		fprintf(fp, "%d %s %s %s %d\n", account->id,str, account->user_name,
+			account->user_password,account->roomid);
 		temp = temp->next;
 	}
 	fclose(fp);
@@ -122,6 +126,8 @@ bool LoadEquipmentList()
 	}
 	ResourceManager* resource_manager = GetResourceManage();
 	int category_id = 0;
+
+	//此处如果是用feof读取空文件将会非常危险，后面相似的地方也是
 	while (!feof(fp))
 	{
 		ExperimentalEquipment* eq = (ExperimentalEquipment*)malloc(sizeof(ExperimentalEquipment));
@@ -219,7 +225,7 @@ bool LoadLaboratoryList()
 		return False;
 	}
 	ResourceManager* resource_manager = GetResourceManage();
-	char delim[] = ", \n";
+	char delim[] = ",";
 	while (!feof(fp))
 	{
 		LabRoom* laboratory = (LabRoom*)malloc(sizeof(LabRoom));
@@ -243,7 +249,8 @@ bool LoadLaboratoryList()
 		while (token)
 		{
 			int id = atoi(token);
-			LinkedList_pushback(laboratory->technician_id_list, id);
+			Account* tech = FindById(id);
+			LinkedList_pushback(laboratory->technician_id_list, &tech->id);
 			token = strtok_s(NULL, delim, &context);
 		}
 		laboratory->equipments_list = CreateLinkedList();
@@ -252,12 +259,14 @@ bool LoadLaboratoryList()
 		while (token)
 		{
 			int id = atoi(token);
-			LinkedList_pushback(laboratory->equipments_list, id);
+			ExperimentalEquipment* eq = (ExperimentalEquipment*)(EFindById(GetResourceManage()->equipment_list, id)
+				->head->next->data);
+			LinkedList_pushback(laboratory->equipments_list, &eq->id);
 			token = strtok_s(NULL, delim, &context);
 		}
 		LinkedList_pushback(resource_manager->laboratory_list, laboratory);
-		fclose(fp);
 	}
+	fclose(fp);
 	return False;
 }
 
@@ -277,18 +286,21 @@ bool SaveLaboratoryList()
 		Node* temp1 = laboratory->technician_id_list->head->next;
 		while (temp1)
 		{
-			fprintf(fp, "%d,", *(int*)temp1->data);
+			int* id = (int*)temp1->data;
+			fprintf(fp, "%d,", *id);
 			temp1 = temp1->next;
 		}
 		fprintf(fp, " ");
 		temp1 = laboratory->equipments_list->head->next;
 		while (temp1)
 		{
-			fprintf(fp, "%d,", *(int*)temp1->data);
+			int* id = (int*)temp1->data;
+			fprintf(fp, "%d,", *id);
 			temp1 = temp1->next;
 		}
 		fprintf(fp, "\n");
 		temp = temp->next;
 	}
+	fclose(fp);
 	return False;
 }

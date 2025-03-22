@@ -202,6 +202,7 @@ bool AddTechnician(LabRoom* lab_room, int techid)
 		return False;
 	}
 	LinkedList_pushback(lab_room->technician_id_list, tech);
+	tech->roomid = lab_room->id;
 	return True;
 }
 
@@ -215,6 +216,7 @@ bool DeleteTechnician(LabRoom* lab_room, int techid)
 		Account* tech = (Account*)temp->next->data;
 		if (tech->id == techid)
 		{
+			tech->roomid = -1;
 			temp->next = temp->next->next;
 			return True;
 		}
