@@ -1,4 +1,4 @@
 1 printer 5
-2 desktop 10
 3 laptop 6
 4 scanner 8
+2 desktop 10
