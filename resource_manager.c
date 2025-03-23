@@ -80,7 +80,7 @@ bool LoadAccountList()
 			account->account_type = Admin;
 		else if (strcmp(str, "Experimenter") == 0)
 			account->account_type = Experimenter;
-		else if (strcmp(str, "user") == 0)
+		else if (strcmp(str, "User") == 0)
 			account->account_type = User;
 
 		LinkedList_pushback(resource_manager->account_list, account);
