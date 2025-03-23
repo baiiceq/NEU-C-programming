@@ -45,6 +45,7 @@ typedef struct _EquipmentQuery
     int max_price;                     // 最大价格
     char name[EQUIPMENT_LENGTH];       // 名字
     int room_id;                       // 所属房间
+
 } EquipmentQuery;
 
 bool QueryEquipmenCondition(void* data, void* param)
@@ -228,7 +229,7 @@ void PrintAccount(void* data)
     }
 
     printf("ID: %d, 账户类型: %s, 账户名称: %s, 所属房间号: %d\n",
-        account->id, account->user_name, type, account->roomid);
+        account->id, type, account->user_name, account->roomid);
 }
 
 void QueryAccountMenu()
