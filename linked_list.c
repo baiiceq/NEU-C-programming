@@ -135,3 +135,87 @@ size_t LinkedList_size(LinkedList* list)
 {
     return list->size;
 }
+
+// 归并排序
+Node* MergeSort(Node* head, int (*cmp)(const void*, const void*, void*), void* arg);
+
+Node* GetMiddle(Node* head);
+
+Node* Merge(Node* left, Node* right, int (*cmp)(const void*, const void*, void*), void* arg);
+
+
+void LinkedList_sort(LinkedList* list, int (*cmp)(const void*, const void*, void*), void* arg)
+{
+    if (!list || !list->head || !list->head->next) return; 
+
+    list->head->next = MergeSort(list->head->next, cmp, arg);
+}
+
+Node* MergeSort(Node* head, int (*cmp)(const void*, const void*, void*), void* arg)
+{
+    if (!head || !head->next) return head; 
+
+    Node* middle = GetMiddle(head);
+    Node* right_half = middle->next;
+    middle->next = NULL;
+
+    Node* left = MergeSort(head, cmp, arg);
+    Node* right = MergeSort(right_half, cmp, arg);
+
+    return Merge(left, right, cmp, arg);
+}
+
+Node* GetMiddle(Node* head)
+{
+    if (!head) return head;
+
+    Node* slow = head;
+    Node* fast = head->next;
+
+    while (fast && fast->next) 
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+
+Node* Merge(Node* left, Node* right, int (*cmp)(const void*, const void*, void*), void* arg)
+{
+    if (!left) return right;
+    if (!right) return left;
+
+    Node dummy; // 头结点
+    Node* tail = &dummy;
+
+    while (left && right) 
+    {
+        if (cmp(left->data, right->data, arg) <= 0) 
+        {
+            tail->next = left;
+            left = left->next;
+        }
+        else 
+        {
+            tail->next = right;
+            right = right->next;
+        }
+        tail = tail->next;
+    }
+
+    tail->next = left ? left : right;
+    return dummy.next;
+}
+
+void LinkedList_print(LinkedList* list, void(*PrintResult)(void*))
+{
+    Node* temp = list->head;
+
+    while (temp->next)
+    {
+        temp = temp->next;
+        PrintResult(temp->data);
+    }
+
+    system("pause");
+}

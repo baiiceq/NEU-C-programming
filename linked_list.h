@@ -47,4 +47,10 @@ DataType LinkedList_at(LinkedList* list, int index);
 // 返回链表大小
 size_t LinkedList_size(LinkedList* list);
 
+// 列表排序
+void LinkedList_sort(LinkedList* list, int (*cmp)(const void*, const void*, void*), void* arg);
+
+// 列表遍历输出
+void LinkedList_print(LinkedList* list, void (*PrintResult)(void*));
+
 #endif // !LINKED_LIST
