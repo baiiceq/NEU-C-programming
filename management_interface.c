@@ -1,5 +1,6 @@
 #include "management_interface.h"
 #include "query.h"
+#include "sort.h"
 
 
 int ShowManagementMenu(AccountType account_type)
@@ -60,6 +61,9 @@ void RunManagementInterface(int option, EquipmentManagement* em, AccountType acc
             break;
         case 3:
             QueryInformation();
+            break;
+        case 4:
+            SortInformation();
             break;
         default:
             break;
@@ -134,6 +138,41 @@ void QueryInformation()
 
 void SortInformation()
 {
+    system("cls");
+
+    printf("---             信息排序           ---\n\n");
+    printf("---        请选择你要排序的信息      ---\n");
+    printf("---          1. 实验室               ---\n");
+    printf("---          2. 账户                 ---\n");
+    printf("---          3. 实验设备类别         ---\n");
+    printf("---          4. 实验设备             ---\n");
+    printf("---          0. 返  回               ---\n");
+    printf("选择->");
+
+    int option = 0;
+    scanf_s("%d", &option);
+
+    switch (option)
+    {
+    case 0:
+        return;
+    case 1:
+        SortLabroomMenu();
+        break;
+    case 2:
+        SortAccountMenu();
+        break;
+    case 3:
+        SortCategoryMenu();
+        break;
+    case 4:
+        SortEquipmentMenu();
+        break;
+    default:
+        printf("非法指令\n");
+        system("pause");
+        break;
+    }
 }
 
 void Statistics()
