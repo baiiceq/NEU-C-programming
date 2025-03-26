@@ -7,6 +7,7 @@
 #include "resource_manager.h"
 
 
+
 enum EquipmentState
 {
 	Using,     // 正在使用
