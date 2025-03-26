@@ -1,6 +1,7 @@
 #include "management_interface.h"
 #include "query.h"
 #include "sort.h"
+#include "statistics.h"
 
 
 int ShowManagementMenu(AccountType account_type)
@@ -64,6 +65,9 @@ void RunManagementInterface(int option, EquipmentManagement* em, AccountType acc
             break;
         case 4:
             SortInformation();
+            break;
+        case 5:
+            Statistics();
             break;
         default:
             break;
@@ -177,6 +181,43 @@ void SortInformation()
 
 void Statistics()
 {
+    system("cls");
+
+    printf("---             信息统计           ---\n\n");
+    printf("---        请选择你要统计的信息      ---\n");
+    printf("---          1. 实验室               ---\n");
+    printf("---          2. 账户                 ---\n");
+    printf("---          3. 实验设备类别         ---\n");
+    printf("---          4. 实验设备             ---\n");
+    printf("---          0. 返  回               ---\n");
+    printf("选择->");
+
+    int option = 0;
+    scanf_s("%d", &option);
+
+    switch (option)
+    {
+    case 0:
+        return;
+    case 1:
+        printf("当前共有%d间实验室\n", GetResourceManage()->laboratory_list->size);
+        system("pause");
+        break;
+    case 2:
+        StatisticsAccountMenu();
+        break;
+    case 3:
+        printf("当前共有%d种实验设备\n", GetResourceManage()->category_list->size);
+        system("pause");
+        break;
+    case 4:
+        StatisticsEquipmentMenu();
+        break;
+    default:
+        printf("非法指令\n");
+        system("pause");
+        break;
+    }
 }
 
 void SystemMaintenance(AccountType account_type)
