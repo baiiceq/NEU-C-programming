@@ -1,9 +1,4 @@
 #pragma once
-#include "account.h"
-#include "category.h"
-#include "lab_room.h"
-#include "experimental_equipment.h"
-
 #include "query.h"
 
 typedef struct _SortAccount
@@ -130,6 +125,11 @@ void SortCategoryMenu()
     LinkedList_sort(list, CompareCategory, &sort_category);
 
     LinkedList_print(list, PrintCategory);
+
+    sort_category.sortByDisposalYears = 0;
+    sort_category.sortById = 1;
+    sort_category.sortByName = 0;
+    LinkedList_sort(list, CompareCategory, &sort_category);
 }
 
 
