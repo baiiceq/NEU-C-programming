@@ -31,6 +31,7 @@ void LoadResource()
 	LoadCategoryList();
 	LoadEquipmentList();
 	LoadLaboratoryList();
+	reLordAccountList();
 }
 
 void SaveResource()
@@ -319,4 +320,24 @@ bool SaveLaboratoryList()
 	}
 	fclose(fp);
 	return False;
+}
+
+//¼ÓÔØaccountÖÐµÄequipment_id_list
+bool reLordAccountList()
+{
+	Node* temp = GetResourceManage()->account_list->head->next;
+	while (temp)
+	{
+		Account* account = (Account*)temp->data;
+		if (account->roomid == -1)
+		{
+			account->equipment_id_list = CreateLinkedList();
+		}
+		else
+		{
+			LabRoom* labroom = RoomId_to_LabRoom(account->roomid);
+			account->equipment_id_list = labroom->equipments_list;
+		}
+		temp = temp->next;
+	}
 }

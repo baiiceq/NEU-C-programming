@@ -29,6 +29,8 @@ void ManageExperimentalEquipment()
 	case 1:
 		AddExperimentalEquipment();
 		break;
+	case 3:
+		ChangeExperimentalEquipment();
 	default:
 		break;
 	}
@@ -41,7 +43,12 @@ void ManageAccount()
 	{
 	case 0:
 		return;
-
+	/*case 1:
+		AddAccount();
+		break;*/
+	case 3:
+		ChangeAccount();
+		break;
 	default:
 		break;
 	}
@@ -77,6 +84,9 @@ void ManageCategory()
 		return;
 	case 1:
 		AddCategory();
+		break;
+	case 3:
+		ChangeCategory();
 		break;
 	default:
 		break;

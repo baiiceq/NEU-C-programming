@@ -17,11 +17,12 @@ typedef struct _Category
 }Category;
 
 Category* CreateCategory(char* name, int disposal_years);
-
+void AddCategory();
+void ChangeCategory();
 void DestoryCategory(Category* category);
 
-void AddCategory();
-Category* FindCategoryById(int id);
+void ChangeCategoryName(Category* category, char* name);
+void ChangeCategoryDisposalYears(Category* category, int disposal_years);
 
-Category* Id_to_Category(int id);
+Category* FindCategoryById(int id);
 #endif // !CATEGORY_H

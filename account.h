@@ -25,23 +25,22 @@ typedef struct _Account
 
 
 Account* CreateAccount();
-
-// 销毁账户
+void ChangeAccount();
 void DestoryAccount(Account* account);
 
-// 判断账户是否有效
-bool ValidAccount(Account* account);
 
-// 判断用户名是否有效
-bool IsValidUsername(char* username);
+bool ValidAccount(Account* account);// 判断账户是否有效
+bool IsValidUsername(char* username);// 判断用户名是否有效
+bool IsValidPassword(char* password);
+bool IsCorrectAccount(Account* account);
 
 Account* FindByUsername(char* username);
 Account* FindById(int id);
 
-
-bool IsValidPassword(char* password);
-
-bool IsCorrectAccount(Account* account);
+bool ChangeAccountLab(Account* account, int room_id);
+bool ChangeAccountType(Account* account, int type);
+bool ChangePassword(Account* account, char* new_password);
+bool ChangeUsername(Account* account, char* new_username);
 
 // ....其他函数
 #endif // !ACCOUNT

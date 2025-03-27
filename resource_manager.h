@@ -34,6 +34,8 @@ bool SaveCategoryList();
 bool LoadLaboratoryList();
 bool SaveLaboratoryList();
 
+bool reLordAccountList();
+
 void DestoryResourceManage();
 
 #endif // !RESOURCE_MANAGER_H

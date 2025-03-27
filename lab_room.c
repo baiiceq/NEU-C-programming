@@ -147,10 +147,10 @@ bool ChangeLabRoom()
 
 bool ChangeLabName(LabRoom* lab_room, char* newname)
 {
-	printf("%s",newname);
 	if (strcmp(newname, "\n") == 0)
 	{		return False;
 	}
+	newname[strcspn(newname, "\n")] = '\0';
 	strcpy_s(lab_room->name, LABROOM_LENGTH, newname);
 	printf("修改成功\n");
 	return True;
@@ -167,8 +167,18 @@ bool AddEquipment(LabRoom* lab_room, int eqid)
 		return False;
 	}
 	ExperimentalEquipment* eq = (ExperimentalEquipment*)temp->head->next->data;
-	LinkedList_pushback(lab_room->equipments_list, eq);
-	printf("添加成功\n");
+	LinkedList_pushback(lab_room->equipments_list, &eq->id);
+	if (eq->room_id != -1)
+	{
+		LabRoom* old_labroom = RoomId_to_LabRoom(eq->room_id);
+		if (old_labroom != NULL)
+		{
+			DeleteEquipment(old_labroom, eqid);
+		}
+	}
+	eq->room_id = lab_room->id;
+
+	printf("添加设备成功\n");
 	return True;
 }
 
@@ -179,9 +189,12 @@ bool DeleteEquipment(LabRoom* lab_room, int eqid)
 	Node* temp = lab_room->equipments_list->head;
 	while (temp->next)
 	{
-		ExperimentalEquipment* eq = (ExperimentalEquipment*)temp->next->data;
-		if (eq->id == eqid)
+		int* eq = (int*)temp->next->data;
+		if (*eq == eqid)
 		{
+			ExperimentalEquipment* eq = (ExperimentalEquipment*)EFindById
+			(GetResourceManage()->equipment_list, eqid)->head->next->data;
+			eq->room_id = -1;
 			temp->next = temp->next->next;
 			return True;
 		}
@@ -211,6 +224,7 @@ bool AddTechnician(LabRoom* lab_room, int techid)
 		}
 	}
 	tech->roomid = lab_room->id;
+	printf("添加实验员成功\n");
 	return True;
 }
 

@@ -41,6 +41,81 @@ void AddCategory()
     system("pause");
 }
 
+void ChangeCategory()
+{
+	int id;
+	printf("请输入要修改的设备类型ID：\n");
+	scanf_s("%d", &id);
+	getchar(); // 清除缓冲区
+	Category* category = FindCategoryById(id);
+	if (category == NULL)
+	{
+		printf("该设备类型不存在\n");
+		return;
+	}
+	while (1)
+	{
+		system("cls");
+		printf("---            设备类型信息修改菜单         ---\n");
+		printf("当前设备类型信息：\n");
+		printf("ID: %d\n", category->id);
+		printf("类型名称: %s\n", category->name);
+		printf("报废年限: %d\n", category->disposal_years);
+		printf("\n");
+		printf("---            1. 修改类型名称               ---\n");
+		printf("---            2. 修改报废年限                 ---\n");
+		printf("---            0. 退出                    ---\n");
+		printf("--- 选择->");
+		int option = 0;
+		scanf_s("%d", &option);
+		getchar(); // 清除缓冲区
+		switch (option)
+		{
+		case 0:
+			return;
+		case 1:
+		{
+			char name[CATEGORY_LENGTH];
+			printf("请输入新的类型名称（1-20个字符）：\n");
+			printf("(直接回车可跳过修改)\n");
+			fgets(name, CATEGORY_LENGTH, stdin);
+			ChangeCategoryName(category, name);
+			break;
+		}
+		case 2:
+		{
+			int disposal_years=0;
+			printf("请输入新的报废年限（1-20年）：\n");
+			printf("(直接回车可跳过修改)\n");
+			scanf_s("%d", &disposal_years);
+			getchar();
+			ChangeCategoryDisposalYears(category,disposal_years);
+			break;
+		}
+		default:
+			printf("无效的选择\n");
+			break;
+		}
+	}
+}
+
+void ChangeCategoryName(Category* category,char* name)
+{
+	if (strcmp(name, "\n") == 0)
+		return;
+	name[strcspn(name, "\n")] = '\0';
+	strcpy_s(category->name, CATEGORY_LENGTH, name);
+	printf("修改成功\n");
+}
+
+void ChangeCategoryDisposalYears(Category* category,int disposal_years)
+{
+	if (disposal_years == 0)
+		return;
+	category->disposal_years = disposal_years;
+	printf("修改成功\n");
+}
+
 Category* FindCategoryById(int id)
 {
 	Node* temp = GetResourceManage()->category_list->head->next;
@@ -52,18 +127,4 @@ Category* FindCategoryById(int id)
 		temp = temp->next;
 	}
 	return NULL;
-}
-
-Category* Id_to_Category(int id)
-{
-    Node* temp = GetResourceManage()->category_list->head;
-
-    while (temp->next)
-    {
-        temp = temp->next;
-        Category* category = (Category*)temp->data;
-        if (id == category->id)
-            return category;
-    }
-    return NULL;
 }

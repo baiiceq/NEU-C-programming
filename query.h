@@ -329,8 +329,26 @@ void PrintLabroom(void* data)
 {
     LabRoom* Labroom = (LabRoom*)data;
  
-    printf("ID: %d, 实验室名字: %s\n",
+    printf("ID: %d, 实验室名字: %s ",
         Labroom->id, Labroom->name);
+    //输出id链
+	printf("实验室中所有设备id ");
+	Node* node = Labroom->equipments_list->head;
+	while (node->next != NULL)
+	{
+		node = node->next;
+		int* id = (int*)node->data;
+		printf("%d ", *id);
+	}
+	printf("实验室中所有技术员id ");
+	node = Labroom->technician_id_list->head;
+	while (node->next != NULL)
+	{
+		node = node->next;
+		int* id = (int*)node->data;
+		printf("%d ", *id);
+	}
+	printf("\n");
 }
 
 void QueryLabroomMenu()

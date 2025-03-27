@@ -72,7 +72,7 @@ static void PrintEquipment2(EquipmentsCount* Count)
 
     if (Count->countByCategory >= 0)
     {
-        Category* category = Id_to_Category(Count->categoryId);
+        Category* category = FindCategoryById(Count->categoryId);
 
         printf("ÀàÐÍÎª%s\n", category->name);
     }

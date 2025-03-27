@@ -102,30 +102,188 @@ void AddExperimentalEquipment()
     }
 }
 
+void ChangeExperimentalEquipment()
+{
+    int equipment_id;
+    printf("请输入要修改的设备ID：\n");
+    scanf_s("%d", &equipment_id);
+    getchar(); // 清除缓冲区
+
+    ExperimentalEquipment* equipment = (ExperimentalEquipment*)EFindById
+    (GetResourceManage()->equipment_list, equipment_id)->head->next->data;
+    if (equipment == NULL)
+    {
+        printf("该设备不存在\n");
+        return;
+    }
+
+    while (1)
+    {
+        system("cls");
+        printf("---            设备信息修改菜单         ---\n");
+        printf("当前设备信息：\n");
+        printf("ID: %d\n", equipment->id);
+        printf("名称: %s\n", equipment->name);
+        printf("价格: %d\n", equipment->price);
+        printf("所属实验室ID: %d\n", equipment->room_id);
+        printf("购买日期: %s\n", equipment->purchase_date);
+        printf("类别: %s\n", equipment->category->name);
+        printf("\n");
+        printf("---            1. 修改名称               ---\n");
+        printf("---            2. 修改价格               ---\n");
+        printf("---            3. 修改所属实验室         ---\n");
+        printf("---            4. 修改购买日期           ---\n");
+        printf("---            5. 修改设备类别           ---\n");
+        printf("---            0. 退出                   ---\n");
+        printf("--- 选择->");
+
+        int option = 0;
+        scanf_s("%d", &option);
+        getchar(); // 清除缓冲区
+
+        bool result = False;
+        switch (option)
+        {
+        case 1:
+        {
+            printf("请输入新的设备名称（直接回车跳过修改）：\n");
+            char new_name[EQUIPMENT_LENGTH] = "";
+            fgets(new_name, EQUIPMENT_LENGTH, stdin);
+            result = ChangeName(equipment, new_name);
+            break;
+        }
+        case 2:
+        {
+            printf("请输入新的设备价格（直接回车跳过修改）：\n");
+			int new_price = 0;
+			scanf_s("%d", &new_price);
+            getchar();
+            result = ChangePrice(equipment, new_price);
+            break;
+        }
+        case 3:
+        {
+            printf("请输入新的所属实验室ID（直接回车跳过修改）：\n");
+            char new_room_id[10] = "";
+            fgets(new_room_id, 10, stdin);
+            result = ChangeRoom_id(equipment, new_room_id);
+            break;
+        }
+        case 4:
+        {
+            printf("请输入新的购买日期（YYYY-MM-DD，直接回车跳过修改）：\n");
+            char new_date[DATE_LENGTH] = "";
+            fgets(new_date, DATE_LENGTH, stdin);
+            result = ChangePurchaseDate(equipment, new_date);
+            break;
+        }
+        case 5:
+        {
+            printf("请选择新的设备类别（直接回车跳过修改）：\n");
+            ResourceManager* rm = GetResourceManage();
+            size_t category_count = rm->category_list->size;
+            Node* temp = rm->category_list->head;
+            for (size_t i = 0; i < category_count; i++)
+            {
+                temp = temp->next;
+                Category* category = (Category*)temp->data;
+                printf("--- No%d. %s\n", (int)i + 1, category->name);
+            }
+            printf("--- 选择->");
+            int select = 0;
+            char input[10] = "";
+            fgets(input, 10, stdin);
+            if (strcmp(input, "\n") == 0)
+            {
+                result = True; // 跳过修改
+            }
+            else
+            {
+                select = atoi(input);
+                if (select > category_count)
+                {
+                    printf("非法指令\n");
+                    result = False;
+                }
+                else
+                {
+                    Category* new_category = LinkedList_at(rm->category_list, select-1);
+                    result = ChangeExperimentalCategory(equipment, new_category);
+                }
+            }
+            break;
+        }
+        case 0:
+            return; // 直接返回，无需返回值
+        default:
+            printf("无效的选择\n");
+            result = False;
+            break;
+        }
+
+        if (result)
+        {
+            printf("操作完成\n");
+        }
+        else
+        {
+            printf("操作失败\n");
+        }
+
+        system("pause");
+    }
+}
+
+
 bool ChangeName(ExperimentalEquipment* eq, char* newname)
 {
+    if (strcmp(newname, "\n") == 0)
+    {
+        return True;
+    }
+    newname[strcspn(newname, "\n")] = '\0';
     strcpy_s(eq->name, EQUIPMENT_LENGTH,newname);
     return True;
 }
 
-bool ChangePrice(ExperimentalEquipment* eq, char* newprice)
+bool ChangePrice(ExperimentalEquipment* eq, int newprice)
 {
-    eq->price = atoi(newprice);
+    if (newprice == 0)
+    {
+        return True;
+    }
+    eq->price = newprice;
     return True;
 }
 
 bool ChangeRoom_id(ExperimentalEquipment* eq, char* newroomid)
 {
-	//先在对应实验室的设备链表中删除该设备
-	LabRoom* lab_room1= RoomId_to_LabRoom(eq->room_id);
-	DeleteEquipment(lab_room1, eq->id);
-
-	eq->room_id = atoi(newroomid);
-
-	//再在新的实验室的设备链表中添加该设备
-	LabRoom* lab_room2 = RoomId_to_LabRoom(eq->room_id);
-	AddEquipment(lab_room2, eq->id);
+    if (strcmp(newroomid, "\n") == 0)
+    {
+        return True; 
+    }
+	newroomid[strcspn(newroomid, "\n")] = '\0'; 
+	LabRoom* lab_room = RoomId_to_LabRoom(atoi(newroomid));
+	AddEquipment(lab_room, eq->id);
 	return True;
+}
+
+bool ChangePurchaseDate(ExperimentalEquipment* eq, char* newdate)
+{
+    if (strcmp(newdate, "\n") == 0)
+        return True; // 跳过修改
+    newdate[strcspn(newdate, "\n")] = '\0';
+    strcpy_s(eq->purchase_date, DATE_LENGTH, newdate);
+    return True;
+}
+
+bool ChangeExperimentalCategory(ExperimentalEquipment* eq, Category* newcategory)
+{
+    if (newcategory == NULL)
+        return True; // 跳过修改
+
+    eq->category = newcategory;
+    return True;
 }
 
 
