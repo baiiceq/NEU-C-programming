@@ -53,3 +53,17 @@ Category* FindCategoryById(int id)
 	}
 	return NULL;
 }
+
+Category* Id_to_Category(int id)
+{
+    Node* temp = GetResourceManage()->category_list->head;
+
+    while (temp->next)
+    {
+        temp = temp->next;
+        Category* category = (Category*)temp->data;
+        if (id == category->id)
+            return category;
+    }
+    return NULL;
+}

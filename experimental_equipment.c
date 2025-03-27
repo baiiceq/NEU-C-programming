@@ -1,6 +1,7 @@
 #include "experimental_equipment.h"
 #include "lab_room.h"
 
+
 ExperimentalEquipment* CreateExperimentalEquipment(Category* category, char* name, int room_id, int price, char* purchase_date)
 {
     ExperimentalEquipment* ee = (ExperimentalEquipment*)malloc(sizeof(ExperimentalEquipment));
@@ -86,7 +87,7 @@ void AddExperimentalEquipment()
 
         printf("--- ÊäÈë¹ºÂòÊ±¼ä£¨yyyymmdd£©->  ");
         scanf_s("%s", purchase_date, DATE_LENGTH);
-        Category* category = LinkedList_at(rm->category_list, select - 1);
+        Category* category = LinkedList_at(rm->category_list, select);
         ExperimentalEquipment* new_ee = CreateExperimentalEquipment(category, name, room_id, price, purchase_date);
         if (new_ee == NULL)
             return;

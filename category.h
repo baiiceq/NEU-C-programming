@@ -23,4 +23,5 @@ void DestoryCategory(Category* category);
 void AddCategory();
 Category* FindCategoryById(int id);
 
+Category* Id_to_Category(int id);
 #endif // !CATEGORY_H
