@@ -60,11 +60,11 @@
     <ClCompile Include="lab_room.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="resource_manager.c">
-      <Filter>源文件\manager</Filter>
-    </ClCompile>
     <ClCompile Include="id_manager.c">
       <Filter>源文件\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="resource_manager.c">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +105,12 @@
       <Filter>头文件\interface%28h%29</Filter>
     </ClInclude>
     <ClInclude Include="account.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="query.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="systemmaintenance.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

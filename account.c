@@ -137,7 +137,7 @@ void ChangeAccount()
 bool ChangeUsername(Account* account, char* new_username)
 {
     // 如果输入为空，表示跳过修改
-    if (strcmp(new_username,"\n") == 0)
+    if (strcmp(new_username, "\n") == 0)
         return True;
 
     new_username[strcspn(new_username, "\n")] = '\0';
@@ -156,27 +156,6 @@ bool ChangeUsername(Account* account, char* new_username)
     }
 
     strcpy_s(account->user_name, USER_NMAE_LENGTH, new_username);
-    printf("用户名修改成功\n");
-    return True;
-}
-
-// 修改密码
-bool ChangePassword(Account* account, char* new_password)
-{
-    // 如果输入为空，表示跳过修改
-    if (strcmp(new_password, "\n") == 0)
-        return True;
-
-    new_password[strcspn(new_password, "\n")] = '\0';
-
-    if (!IsValidPassword(new_password))
-    {
-        printf("密码不合法\n");
-        return False;
-    }
-
-    strcpy_s(account->user_password, USER_PASSWORD_LENGTH, new_password);
-    printf("密码修改成功\n");
     return True;
 }
 
@@ -304,6 +283,14 @@ Account* FindById(int id)
 	return NULL;
 }
 
+void DisplayPasswordRules() 
+{
+    printf("请输入密码，密码要求：\n");
+    printf("1. 长度在 %d-%d 个字符之间\n", MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH);
+    printf("2. 只能包含字母、数字和特殊字符(@+?)\n");
+    printf("3. 不能与用户名相同\n");
+}
+
 bool IsValidPassword(char* password)
 {
 	int count = 0;
@@ -335,7 +322,6 @@ bool IsCorrectAccount(Account* account)
 		return False;
 	}
 
-	account->account_type = temp->account_type;
 	return True;
 }
 

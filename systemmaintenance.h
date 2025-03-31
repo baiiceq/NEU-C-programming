@@ -1,0 +1,354 @@
+#pragma once
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#include <time.h>
+#include "resource_manager.h"
+#include "account.h"
+#include "configs.h"
+
+    // 记录系统操作日志
+    bool LogSystemOperation(const char* operation, int userId) {
+        FILE* fp= fopen("system_log.txt", "a");
+        if (fp== NULL) 
+        {
+            printf("无法打开日志文件\n");
+            return false;
+        }
+
+        time_t now;
+        time(&now);
+        char time[26];
+        ctime_s(time, sizeof(time), &now);
+        time[24] = '\0'; //ctime函数会自动补换行符，所以这里移除换行符
+
+        Account* account = FindById(userId);
+        const char* username = account ? account->user_name : "未知用户";
+
+        fprintf(fp, "[%s] 用户: %s (ID: %d) 操作: %s\n",
+            time, username, userId, operation);
+
+        fclose(fp);
+        return true;
+    }
+
+    // 修改自己的用户名
+    bool ChangeAccountName(Account* account)
+    {
+        char newUsername[USER_NMAE_LENGTH];
+        char password[USER_PASSWORD_LENGTH];
+
+        printf("修改用户名需要验证您的身份\n");
+        printf("请输入当前密码: ");
+        scanf_s("%s", password, USER_PASSWORD_LENGTH);
+        fflush(stdin);
+
+        // 验证密码
+        if (strcmp(account->user_password, password) != 0) {
+            printf("密码错误，无法修改用户名\n");
+            return False;
+        }
+
+        printf("\n--- 修改用户名 ---\n");
+        printf("当前用户名: %s\n", account->user_name);
+        printf("用户名要求：4-12个字符，只能包含字母和数字\n");
+        printf("请输入新用户名: ");
+        scanf_s("%s", newUsername, USER_NMAE_LENGTH);
+        fflush(stdin);
+        // 备份旧用户名以便记录
+        char oldUsername[USER_NMAE_LENGTH];
+        strcpy_s(oldUsername, USER_NMAE_LENGTH, account->user_name);
+
+        ChangeUsername(account,newUsername);
+
+        printf("用户名修改成功，从 '%s' 修改为 '%s'\n", oldUsername, newUsername);
+
+        char operation[100];
+        snprintf(operation, 100, "用户名修改: %s -> %s", oldUsername, newUsername);
+        LogSystemOperation(operation, account->id); 
+
+        return True;
+    }
+
+    // 管理员修改用户的用户名
+    bool AdminChangeUsername(int adminId, int targetUserId)
+    {
+        Account* targetAccount = FindById(targetUserId);
+        if (targetAccount == NULL) {
+            printf("目标用户不存在\n");
+            return False;
+        }
+
+        printf("\n--- 管理员修改用户名 ---\n");
+        printf("目标用户: %s (ID: %d)\n", targetAccount->user_name, targetUserId);
+        printf("当前用户名: %s\n", targetAccount->user_name);
+        printf("用户名要求：4-12个字符，只能包含字母和数字\n\n");
+
+        char newUsername[USER_NMAE_LENGTH];
+        printf("请输入新用户名: ");
+        scanf_s("%s", newUsername, USER_NMAE_LENGTH);
+        fflush(stdin);
+
+        // 备份旧用户名以便记录
+        char oldUsername[USER_NMAE_LENGTH];
+        strcpy_s(oldUsername, USER_NMAE_LENGTH, targetAccount->user_name);
+
+		ChangeUsername(targetAccount, newUsername);
+
+        printf("用户名修改成功，从 '%s' 修改为 '%s'\n", oldUsername, newUsername);
+
+        char operation[100];
+        snprintf(operation, 100, "用户名修改: %s -> %s", oldUsername, newUsername);
+        LogSystemOperation(operation, adminId);
+
+        return True;
+    }
+
+    // 修改自己的密码
+    bool ChangePassword(Account* account) {
+        char currentPassword[USER_PASSWORD_LENGTH];
+        char newPassword[USER_PASSWORD_LENGTH];
+        char confirmPassword[USER_PASSWORD_LENGTH];
+
+        printf("请先输入原密码\n");
+        scanf_s("%s", currentPassword, USER_PASSWORD_LENGTH);
+        fflush(stdin);
+        Account testaccount;
+        strcpy_s(testaccount.user_name,USER_NMAE_LENGTH,account->user_name);
+        strcpy_s(testaccount.user_password,USER_PASSWORD_LENGTH, account->user_password);
+        if (!IsCorrectAccount(&testaccount)) {
+            return false;
+        }
+        printf("\n--- 修改密码 ---\n");
+        DisplayPasswordRules();
+        scanf_s("%s", newPassword, USER_PASSWORD_LENGTH);
+        fflush(stdin);
+
+        if (!IsValidPassword(newPassword)) {
+            return false;
+        }
+
+        printf("请确认新密码: ");
+        scanf_s("%s", confirmPassword, USER_PASSWORD_LENGTH);
+        fflush(stdin);
+
+        if (strcmp(newPassword, confirmPassword) != 0) {
+            printf("两次输入的密码不一致\n");
+            return false;
+        }
+
+        strcpy_s(account->user_password, USER_PASSWORD_LENGTH, newPassword);
+        printf("密码修改成功\n");
+
+        char operation[20];
+        switch (account->account_type) 
+        {
+        case Admin:
+            strcpy_s(operation,20, "修改管理员密码");
+        case User:
+            strcpy_s(operation, 20,"修改一般用户密码");
+        case Experimenter:
+            strcpy_s(operation, 20,"修改实验员密码");
+        }
+        LogSystemOperation(operation, account->id);
+        return true;
+    }
+
+    // 重置用户或实验员密码
+    bool ResetUserPassword(int targetUserId, int adminId) {
+        Account* targetAccount = FindById(targetUserId);
+        if (targetAccount == NULL) {
+            printf("目标用户不存在\n");
+            return false;
+        }
+
+        // 生成默认密码（用户名 + "12345"）
+        char defaultPassword[USER_PASSWORD_LENGTH];
+        //新学到的函数snprintf
+        snprintf(defaultPassword, USER_PASSWORD_LENGTH, "%s12345", targetAccount->user_name);
+
+        if (strlen(defaultPassword) < MIN_PASSWORD_LENGTH) {
+            strcat_s(defaultPassword, USER_PASSWORD_LENGTH, "additional");
+        }
+
+        strcpy_s(targetAccount->user_password, USER_PASSWORD_LENGTH, defaultPassword);
+
+        printf("已将用户 %s (ID: %d) 的密码重置为: %s\n",
+            targetAccount->user_name, targetUserId, defaultPassword);
+
+        LogSystemOperation("重置用户密码", adminId);
+        return true;
+    }
+
+    // 备份系统数据
+    bool BackupSystemData(int adminId) {
+        ResourceManager* rm = GetResourceManage();
+        FILE* backupFile;
+        errno_t err = fopen_s(&backupFile, BACKUP_FILE_PATH, "wb");
+        if (err != 0 || backupFile == NULL) {
+            printf("创建备份文件失败\n");
+            return false;
+        }
+
+        // 备份账户数据
+        fprintf(backupFile, "=== 账户数据 ===\n");
+        Node* tempAccount = rm->account_list->head->next;
+        while (tempAccount) {
+            Account* account = (Account*)tempAccount->data;
+            fprintf(backupFile, "ID:%d|用户名:%s|密码:%s|类型:%d|实验室:%d\n",
+                account->id, account->user_name, account->user_password,
+                account->account_type, account->roomid);
+            tempAccount = tempAccount->next;
+        }
+
+        // 备份其他数据（如设备、实验室等）
+        // ...
+
+        fclose(backupFile);
+        printf("系统数据备份成功，保存至 %s\n", BACKUP_FILE_PATH);
+
+        LogSystemOperation("备份系统数据", adminId);
+        return true;
+    }
+
+    // 恢复系统数据
+    bool RestoreSystemData(int adminId) {
+        char confirmInput;
+        printf("警告：恢复操作将覆盖当前所有数据！继续？(Y/N): ");
+        scanf_s("%c", &confirmInput, 1);
+        fflush(stdin);
+
+        if (confirmInput != 'Y' && confirmInput != 'y') {
+            printf("已取消恢复操作\n");
+            return false;
+        }
+
+        FILE* backupFile;
+        errno_t err = fopen_s(&backupFile, BACKUP_FILE_PATH, "rb");
+        if (err != 0 || backupFile == NULL) {
+            printf("找不到备份文件: %s\n", BACKUP_FILE_PATH);
+            return false;
+        }
+
+        // 这里应该实现实际的恢复逻辑，根据备份文件恢复系统数据
+        // 由于复杂性和代码量，这里只提供一个简化的示例
+
+        printf("正在从备份文件恢复数据...\n");
+        // 恢复账户数据
+        // ...
+
+        // 恢复其他数据
+        // ...
+
+        fclose(backupFile);
+        printf("系统数据恢复成功\n");
+
+        LogSystemOperation("恢复系统数据", adminId);
+        return true;
+    }
+
+    // 系统维护主菜单（管理员）
+    void ASystemMaintenance(Account* account) {
+        int choice;
+        bool exit = false;
+
+        while (!exit) {
+            system("cls");
+            printf("\n=== 系统维护菜单（管理员）===\n");
+            printf("1. 修改当前账户密码\n");
+            printf("2. 重置用户/实验员密码\n");
+			printf("3. 修改当前账户用户名\n");
+			printf("4. 修改用户/实验员用户名\n");
+            printf("3. 备份系统数据\n");
+            printf("4. 恢复系统数据\n");
+            printf("0. 返回\n");
+            printf("请选择: ");
+
+            scanf_s("%d", &choice);
+            fflush(stdin);
+
+            system("cls");
+            switch (choice) 
+            {
+            case 1:
+                ChangePassword(account->id);
+                break;
+
+            case 2: 
+            {
+                int targetUserId;
+                printf("请输入要重置密码的用户ID: ");
+                scanf_s("%d", &targetUserId);
+                fflush(stdin);
+                ResetUserPassword(targetUserId, account->id);
+                break;
+            }
+            case 3:
+				ChangeAccountName(account);
+				break;
+            case 4:
+			{
+				int targetUserId;
+				printf("请输入要修改用户名的用户ID: ");
+				scanf_s("%d", &targetUserId);
+				fflush(stdin);
+				AdminChangeUsername(account->id, targetUserId);
+				break;
+			}
+            /*case 3:
+                BackupSystemData(account->id);
+                break;
+
+            case 4:
+                RestoreSystemData(account->id);
+                break;*/
+
+            case 0:
+                exit = true;
+                break;
+
+            default:
+                printf("无效的选择，请重试\n");
+                break;
+            }
+            system("pause");
+        }
+    }
+
+    // 系统维护主菜单（用户/实验员）
+    void USystemMaintenance(Account* account) {
+        int choice;
+        bool exit = false;
+
+        while (!exit) {
+            system("cls");
+            printf("\n=== 系统维护菜单 ===\n");
+            printf("1. 修改密码\n");
+            printf("2.修改用户名\n");
+            printf("0. 返回\n");
+            printf("请选择: ");
+
+            scanf_s("%d", &choice);
+            fflush(stdin);
+
+            system("cls");
+            switch (choice) {
+            case 1:
+                ChangePassword(account->id);
+                break;
+            case 2:
+				ChangeAccountName(account);
+				break;
+            case 0:
+                exit = true;
+                break;
+
+            default:
+                printf("无效的选择，请重试\n");
+                break;
+            }
+            system("pause");
+        }
+    }

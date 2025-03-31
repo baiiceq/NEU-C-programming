@@ -39,8 +39,9 @@ Account* FindById(int id);
 
 bool ChangeAccountLab(Account* account, int room_id);
 bool ChangeAccountType(Account* account, int type);
-bool ChangePassword(Account* account, char* new_password);
 bool ChangeUsername(Account* account, char* new_username);
+void DisplayPasswordRules();
+
 
 // ....ÆäËûº¯Êý
 #endif // !ACCOUNT

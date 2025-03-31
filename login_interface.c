@@ -36,7 +36,7 @@ void RunLoginInterface(int option, EquipmentManagement* em)
             return;
         }
         em->current_state = Management;
-        em->current_account = account;
+        em->current_account = FindByUsername(account->user_name);
         printf("登录成功\n");
     }
         break;
@@ -58,7 +58,7 @@ Account* AccountLogin()
     fgets(account->user_name, USER_NMAE_LENGTH, stdin);
     account->user_name[strcspn(account->user_name, "\n")] = '\0';
 
-    printf("请输入用户密码（长度在8-20位，且只能包含字母数字以及@+？）\n");
+    DisplayPasswordRules();
     fgets(account->user_password, sizeof(account->user_password), stdin);
     account->user_password[strcspn(account->user_password, "\n")] = '\0';
 

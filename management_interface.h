@@ -22,7 +22,7 @@ void SortInformation();
 void Statistics();
 
 // 系统维护
-void SystemMaintenance(AccountType account_type);
+void SystemMaintenance(Account* account);
 
 // 基本信息维护
 void BasicInformationManagement();
@@ -32,4 +32,5 @@ void AdjustmentInformation();
 
 // 设备管理
 void EquipmentsManagement();
+
 #endif // !MANAGEMENT_INTERFACE

@@ -144,6 +144,7 @@
     <ClCompile Include="management_interface.c" />
     <ClCompile Include="register_interface.c" />
     <ClCompile Include="resource_manager.c" />
+    <ClInclude Include="systemmaintenance.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="category.h" />

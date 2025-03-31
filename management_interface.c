@@ -2,6 +2,7 @@
 #include "query.h"
 #include "sort.h"
 #include "statistics.h"
+#include "systemmaintenance.h"
 
 
 int ShowManagementMenu(AccountType account_type)
@@ -25,13 +26,13 @@ int ShowManagementMenu(AccountType account_type)
         printf("---        2. 信息查询          ---\n");
         printf("---        3. 信息排序          ---\n");
         printf("---        4. 信息统计          ---\n");
-        printf("---        5. 系统维护          ---\n");
+        printf("---        5. 修改密码/用户名   ---\n");
         break;
     case User:
         printf("---        1. 信息查询          ---\n");
         printf("---        2. 信息排序          ---\n");
         printf("---        3. 信息统计          ---\n");
-        printf("---        4. 系统维护          ---\n");
+        printf("---        4. 修改密码/用户名   ---\n");
         break;
     }
 
@@ -69,6 +70,8 @@ void RunManagementInterface(int option, EquipmentManagement* em, AccountType acc
         case 5:
             Statistics();
             break;
+        case 6:
+            SystemMaintenance(em->current_account);
         default:
             break;
         }
@@ -81,6 +84,8 @@ void RunManagementInterface(int option, EquipmentManagement* em, AccountType acc
             em->current_account = NULL;
             em->current_state = Login;
             return;
+        case 5:
+            SystemMaintenance(em->current_account);
         default:
             break;
         }
@@ -220,9 +225,6 @@ void Statistics()
     }
 }
 
-void SystemMaintenance(AccountType account_type)
-{
-}
 
 void BasicInformationManagement()
 {
@@ -269,5 +271,21 @@ void AdjustmentInformation()
 
 void EquipmentsManagement()
 {
+}
+
+void SystemMaintenance(Account* account)
+{
+    switch (account->account_type)
+    {
+	case Admin:
+		ASystemMaintenance(account);
+		break;
+	case Experimenter:
+		USystemMaintenance(account);
+		break;
+	case User:
+		USystemMaintenance(account);
+		break;
+    }
 }
 
