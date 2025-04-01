@@ -25,6 +25,8 @@ typedef struct _Account
 
 
 Account* CreateAccount();
+Account* AccountRegister();
+void DeleteAccount(Account* account);
 void ChangeAccount();
 void DestoryAccount(Account* account);
 

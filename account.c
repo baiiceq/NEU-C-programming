@@ -22,6 +22,72 @@ void DestoryAccount(Account* account)
 	free(account);
 }
 
+Account* AccountRegister()
+{
+    Account* account = CreateAccount();
+    int a = 0;
+    printf("请输入用户类型1.管理员2.实验员3.一般用户\n");
+    scanf_s("%d", &a);
+    while (getchar() != '\n');
+    switch (a)
+    {
+    case 1:
+        account->account_type = Admin;
+        break;
+    case 2:
+        account->account_type = Experimenter;
+        break;
+    case 3:
+        account->account_type = User;
+        break;
+    default:
+        printf("用户类型不合法\n");
+        return NULL;
+    }
+    printf("请输入用户名(长度在4-12位，且只能包含字母和数字）\n");
+    fgets(account->user_name, USER_NMAE_LENGTH, stdin);
+    account->user_name[strcspn(account->user_name, "\n")] = '\0';
+    DisplayPasswordRules();
+    fgets(account->user_password, sizeof(account->user_password), stdin);
+    account->user_password[strcspn(account->user_password, "\n")] = '\0';
+
+    if (!ValidAccount(account))
+    {
+        free(account);
+        return NULL;
+    }
+    account->id = GetNewId(AccountID);
+    account->roomid = -1;
+    return account;
+}
+
+void DeleteAccount(Account* account)
+{
+    // 如果是实验员，删除实验室关联
+    if (account->account_type == Experimenter && account->roomid != -1) {
+        LabRoom* lab = RoomId_to_LabRoom(account->roomid);
+        if (lab != NULL) {
+            DeleteTechnician(lab, account->id);
+            printf("已从实验室 %s (ID: %d) 中移除该实验员\n", lab->name, lab->id);
+        }
+    }
+
+	LinkedList* account_list = GetResourceManage()->account_list;
+	Node* node = account_list->head;
+	while (node->next != NULL)
+	{
+		Account* temp = (Account*)node->next->data;
+		if (temp == account)
+		{
+			node->next = node->next->next;
+            DestoryAccount(account);
+			account_list->size--;
+            break;
+		}
+		node = node->next;
+	}
+}
+
 void ChangeAccount()
 {
     int account_id;

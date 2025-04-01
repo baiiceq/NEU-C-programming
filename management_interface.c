@@ -2,7 +2,6 @@
 #include "query.h"
 #include "sort.h"
 #include "statistics.h"
-#include "systemmaintenance.h"
 
 
 int ShowManagementMenu(AccountType account_type)
@@ -54,7 +53,6 @@ void RunManagementInterface(int option, EquipmentManagement* em, AccountType acc
         switch (option)
         {
         case 0:
-            free(em->current_account);
             em->current_account = NULL;
             em->current_state = Login;
             return ;
@@ -80,7 +78,6 @@ void RunManagementInterface(int option, EquipmentManagement* em, AccountType acc
         switch (option)
         {
         case 0:
-            free(em->current_account);
             em->current_account = NULL;
             em->current_state = Login;
             return;
@@ -95,7 +92,6 @@ void RunManagementInterface(int option, EquipmentManagement* em, AccountType acc
         switch (option)
         {
         case 0:
-            free(em->current_account);
             em->current_account = NULL;
             em->current_state = Login;
             return;
@@ -263,6 +259,7 @@ void BasicInformationManagement()
         system("pause");
         break;
     }
+	system("pause");
 }
 
 void AdjustmentInformation()

@@ -26,6 +26,7 @@ typedef struct _ExperimentalEquipment
 	int room_id;                              // 所在实验室ID,-1表示未分配
 	int price;                                // 设备价格
 	char purchase_date[DATE_LENGTH];          // 购入日期 (YYYY-MM-DD)
+	EquipmentState state;                     // 设备状态
 }ExperimentalEquipment;
 
 ExperimentalEquipment* CreateExperimentalEquipment(Category* category, char* name, int room_id, int price, char* purchase_date);
@@ -33,6 +34,7 @@ ExperimentalEquipment* CreateExperimentalEquipment(Category* category, char* nam
 void DestoryExperimentalEquipment(ExperimentalEquipment* experimental_equipment);
 
 void AddExperimentalEquipment();
+void DeleteExperimentalEquipment(ExperimentalEquipment* ee);
 void ChangeExperimentalEquipment();
 
 bool ChangeName(ExperimentalEquipment* eq, char* newname);

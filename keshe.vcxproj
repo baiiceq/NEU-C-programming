@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="account.c" />
+    <ClCompile Include="systemmaintenance.c" />
     <ClInclude Include="account.h" />
     <ClCompile Include="category.c" />
     <ClCompile Include="equipment_management.c" />

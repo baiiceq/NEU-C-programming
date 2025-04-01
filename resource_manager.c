@@ -36,10 +36,15 @@ void LoadResource()
 
 void SaveResource()
 {
-	SaveAccountList();
-	SaveCategoryList();
-	SaveEquipmentList();
-	SaveLaboratoryList();
+	char path[100];
+	strcpy_s(path,100, "account.txt");
+	SaveAccountList(path);
+	strcpy_s(path,100, "category.txt");
+	SaveCategoryList(path);
+	strcpy_s(path, 100, "equipment.txt");
+	SaveEquipmentList(path);
+	strcpy_s(path, 100,"laboratory.txt");
+	SaveLaboratoryList(path);
 }
 
 void DestoryResourceManage()
@@ -90,9 +95,9 @@ bool LoadAccountList()
 	return True;
 }
 
-bool SaveAccountList()
+bool SaveAccountList(char* path)
 {
-	FILE* fp = fopen("account.txt", "w");
+	FILE* fp = fopen(path, "w");
 	if (fp == NULL)
 	{
 		printf("文件打开失败\n");
@@ -138,22 +143,42 @@ bool LoadEquipmentList()
 			fclose(fp);
 			return False;
 		}
+		char str[15] = "";
 		fscanf_s(fp, "%d %d ", &eq->id, &category_id);
 		fscanf_s(fp, "%s ", eq->name, EQUIPMENT_LENGTH);
 		fscanf_s(fp, "%d %d ", &eq->room_id, &eq->price);
-		fscanf_s(fp, "%s\n", eq->purchase_date, DATE_LENGTH);
+		fscanf_s(fp, "%s ", eq->purchase_date, DATE_LENGTH);
+		fscanf_s(fp, "%s\n", str, 15);
 		eq->name[strlen(eq->name)] = '\0';
 		eq->purchase_date[strlen(eq->purchase_date)] = '\0';
-		eq->category = FindCategoryById(category_id);
+
+		if (category_id == -1)
+			eq->category = NULL;
+		else
+			eq->category = FindCategoryById(category_id);
+
+		if (strcmp(str, "Using") == 0)
+			eq->state = Using;
+		else if (strcmp(str, "Idle") == 0)
+			eq->state = Idle;
+		else if (strcmp(str, "Scrapped") == 0)
+			eq->state = Scrapped;
+		else if (strcmp(str, "Damaged") == 0)
+			eq->state = Damaged;
+		else if (strcmp(str, "Lost") == 0)
+			eq->state = Lost;
+		else if (strcmp(str, "Repairing") == 0)
+			eq->state = Repairing;
+
 		LinkedList_pushback(resource_manager->equipment_list, eq);
 	}
 	fclose(fp);
 	return False;
 }
 
-bool SaveEquipmentList()
+bool SaveEquipmentList(char* path)
 {
-	FILE* fp = fopen("equipment.txt", "w");
+	FILE* fp = fopen(path, "w");
 	if (fp == NULL)
 	{
 		printf("文件打开失败\n");
@@ -163,8 +188,22 @@ bool SaveEquipmentList()
 	while (temp)
 	{
 		ExperimentalEquipment* eq = (ExperimentalEquipment*)temp->data;
-		fprintf(fp, "%d %d %s %d %d %s\n", eq->id, eq->category->id, eq->name,
+		fprintf(fp, "%d %d %s %d %d %s ", eq->id, eq->category->id, eq->name,
 			eq->room_id, eq->price, eq->purchase_date);
+		char str[15] = "";
+		if (eq->state == Using)
+			strcpy_s(str, 15, "Using");
+		else if (eq->state == Idle)
+			strcpy_s(str, 15, "Idle");
+		else if (eq->state == Scrapped)
+			strcpy_s(str, 15, "Scrapped");
+		else if (eq->state == Damaged)
+			strcpy_s(str, 15, "Damaged");
+		else if (eq->state == Lost)
+			strcpy_s(str, 15, "Lost");
+		else if (eq->state == Repairing)
+			strcpy_s(str, 15, "Repairing");
+		fprintf(fp, "%s\n", str);
 		temp = temp->next;
 	}
 	fclose(fp);
@@ -198,9 +237,9 @@ bool LoadCategoryList()
 	return False;
 }
 
-bool SaveCategoryList()
+bool SaveCategoryList(char* path)
 {
-	FILE* fp = fopen("category.txt", "w");
+	FILE* fp = fopen(path, "w");
 	if (fp == NULL)
 	{
 		printf("文件打开失败\n");
@@ -277,9 +316,9 @@ bool LoadLaboratoryList()
 	return False;
 }
 
-bool SaveLaboratoryList()
+bool SaveLaboratoryList(char* path)
 {
-	FILE* fp = fopen("laboratory.txt", "w");
+	FILE* fp = fopen(path, "w");
 	if (fp == NULL)
 	{
 		printf("文件打开失败\n");
@@ -340,4 +379,25 @@ bool reLordAccountList()
 		}
 		temp = temp->next;
 	}
+}
+
+//备份文件
+bool SaveBackUp(char* time,char* formattedTime)
+{
+	char str[100];
+	snprintf(str, 100, "backups/%s/readme.txt", formattedTime);
+	FILE* fp = fopen(str, "w");
+	if(fp==NULL)
+	{
+		printf("文件打开失败\n");
+		return False;
+	}
+	fprintf(fp, "=== 系统备份信息 ===\n");
+	fprintf(fp, "备份时间%s\n",time);
+	ResourceManager* rm = GetResourceManage();
+	fprintf(fp, "账户数据备份共 %zu 条记录\n", rm->account_list->size);
+	fprintf(fp, "设备数据备份共 %zu 条记录\n", rm->equipment_list->size);
+	fprintf(fp, "设备类别数据备份共 %zu 条记录\n",rm->category_list->size);
+	fprintf(fp, "实验室数据备份共 %zu 条记录\n", rm->laboratory_list->size);
+	fclose(fp);
 }

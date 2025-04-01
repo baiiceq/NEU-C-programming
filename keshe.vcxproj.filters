@@ -64,6 +64,9 @@
       <Filter>源文件\manager</Filter>
     </ClCompile>
     <ClCompile Include="resource_manager.c">
+      <Filter>源文件\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="systemmaintenance.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

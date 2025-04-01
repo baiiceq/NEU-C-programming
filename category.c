@@ -1,4 +1,5 @@
 #include "category.h"
+#include "experimental_equipment.h"
 
 Category* CreateCategory(char* name, int disposal_years)
 {
@@ -18,6 +19,7 @@ Category* CreateCategory(char* name, int disposal_years)
 
 void DestoryCategory(Category* category)
 {
+	free(category);
 }
 
 void AddCategory()
@@ -97,6 +99,34 @@ void ChangeCategory()
 			break;
 		}
 	}
+}
+
+void DeleteCategory(int id)
+{
+	// 如果设备类型下有设备，不允许删除
+	if(EFindByCategory(GetResourceManage()->equipment_list, FindCategoryById(id))->head->next==NULL)
+	{
+		printf("该设备类型下有设备，不允许删除\n");
+		return;
+	}
+	Node* temp = GetResourceManage()->category_list->head;
+	while (temp->next)
+	{
+		Category* category = (Category*)temp->next->data;
+		if (category->id == id)
+		{
+			Node* temp2 = temp->next;
+			temp->next = temp->next->next;
+			free(temp2);
+			DestoryCategory(category);
+			GetResourceManage()->category_list->size--;
+			printf("删除成功\n");
+			return ;
+		}
+		temp = temp->next;
+	}
+	printf("删除失败\n");
+	return ;
 }
 
 void ChangeCategoryName(Category* category,char* name)

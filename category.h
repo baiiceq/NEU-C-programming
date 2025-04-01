@@ -18,6 +18,7 @@ typedef struct _Category
 
 Category* CreateCategory(char* name, int disposal_years);
 void AddCategory();
+void DeleteCategory(int id);
 void ChangeCategory();
 void DestoryCategory(Category* category);
 

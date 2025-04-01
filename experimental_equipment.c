@@ -2,7 +2,8 @@
 #include "lab_room.h"
 
 
-ExperimentalEquipment* CreateExperimentalEquipment(Category* category, char* name, int room_id, int price, char* purchase_date)
+ExperimentalEquipment* CreateExperimentalEquipment(Category* category, char* name, int room_id, 
+    int price, char* purchase_date,EquipmentState state)
 {
     ExperimentalEquipment* ee = (ExperimentalEquipment*)malloc(sizeof(ExperimentalEquipment));
 
@@ -18,6 +19,7 @@ ExperimentalEquipment* CreateExperimentalEquipment(Category* category, char* nam
     ee->price = price;
     ee->room_id = room_id;
     strcpy_s(ee->purchase_date, DATE_LENGTH, purchase_date);
+    ee->state = state;
 
     return ee;
 
@@ -25,7 +27,7 @@ ExperimentalEquipment* CreateExperimentalEquipment(Category* category, char* nam
 
 void DestoryExperimentalEquipment(ExperimentalEquipment* experimental_equipment)
 {
-
+    free(experimental_equipment);
 }
 
 void AddExperimentalEquipment()
@@ -87,8 +89,37 @@ void AddExperimentalEquipment()
 
         printf("--- 输入购买时间（yyyymmdd）->  ");
         scanf_s("%s", purchase_date, DATE_LENGTH);
+		printf("输入设备状态(0:正在使用 1:空闲 2:遗失 3:损坏4:报废5:正在维修)->");
+		int state;
+		scanf_s("%d", &state);
+		EquipmentState state1;
+        switch (state)
+        {
+		case 0:
+			state1 = Using;
+			break;
+		case 1:
+			state1 = Idle;
+			break;
+		case 2:
+			state1 = Lost;
+			break;
+		case 3:
+			state1 = Damaged;
+			break;
+		case 4:
+			state1 = Scrapped;
+			break;
+		case 5:
+			state1 = Repairing;
+			break;
+		default:
+			printf("非法指令\n");
+			system("pause");
+			return;
+        }
         Category* category = LinkedList_at(rm->category_list, select);
-        ExperimentalEquipment* new_ee = CreateExperimentalEquipment(category, name, room_id, price, purchase_date);
+        ExperimentalEquipment* new_ee = CreateExperimentalEquipment(category, name, room_id, price, purchase_date,state1);
         if (new_ee == NULL)
             return;
 
@@ -100,6 +131,33 @@ void AddExperimentalEquipment()
         system("pause");
 
     }
+}
+
+void DeleteExperimentalEquipment(ExperimentalEquipment* ee)
+{
+	// 如果设备在实验室中，从实验室中移除
+    if (ee->room_id != -1) {
+        LabRoom* lab = RoomId_to_LabRoom(ee->room_id);
+        if (lab != NULL) {
+            DeleteEquipment(lab, ee->id);
+            printf("已从实验室 %s (ID: %d) 中移除设备\n", lab->name, lab->id);
+        }
+    }
+	Node* temp = GetResourceManage()->equipment_list->head;
+	while (temp->next)
+	{
+		ExperimentalEquipment* equipment = (ExperimentalEquipment*)temp->next->data;
+		if (equipment->id == ee->id)
+		{
+			Node* temp2 = temp->next;
+			temp->next = temp->next->next;
+			free(temp2);
+			DestoryExperimentalEquipment(ee);
+			printf("删除成功\n");
+			return;
+		}
+		temp = temp->next;
+	}
 }
 
 void ChangeExperimentalEquipment()

@@ -20,21 +20,23 @@ void LoadResource();
 void SaveResource();
 
 bool LoadAccountList();
-bool SaveAccountList();
+bool SaveAccountList(char*);
 
 
 bool LoadEquipmentList();
-bool SaveEquipmentList();
+bool SaveEquipmentList(char*);
 
 
 bool LoadCategoryList();
-bool SaveCategoryList();
+bool SaveCategoryList(char*);
 
 
 bool LoadLaboratoryList();
-bool SaveLaboratoryList();
+bool SaveLaboratoryList(char*);
 
 bool reLordAccountList();
+
+bool SaveBackUp(char* time,char* formattedtime);
 
 void DestoryResourceManage();
 

@@ -20,6 +20,7 @@ LabRoom* CreateLabRoom(char* name)
 
 void DestoryLabRoom(LabRoom* lab_room)
 {
+	free(lab_room);
 }
 
 void AddLabRoom()
@@ -40,11 +41,21 @@ void AddLabRoom()
     system("pause");
 }
 
-bool DeleteLabRoom()
+bool DeleteLabRoom(int room_id)
 {
-    printf("请输入要删除的实验室编号\n");
-    int room_id;
-    scanf_s("%d", &room_id);
+	//如果该实验室中还有实验员或设备，不允许删除
+	LabRoom* labroom = RoomId_to_LabRoom(room_id);
+	if (labroom == NULL)
+	{
+		printf("该实验室不存在\n");
+		return False;
+	}
+	if (labroom->equipments_list->size != 0 || labroom->technician_id_list->size != 0)
+	{
+		printf("该实验室中还有实验员或设备，不允许删除\n");
+		return False;
+	}
+
 	Node* temp = GetResourceManage()->laboratory_list->head;
 	while (temp->next)
 	{

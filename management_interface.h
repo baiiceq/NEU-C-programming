@@ -6,7 +6,7 @@
 #include "equipment_management.h"
 #include "id_manager.h"
 #include "info_operations.h"
-
+#include "systemmaintenance.h"
 
 int ShowManagementMenu(AccountType account_type);
 
