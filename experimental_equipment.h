@@ -42,6 +42,7 @@ bool ChangePrice(ExperimentalEquipment* eq, int newprice);
 bool ChangeRoom_id(ExperimentalEquipment* eq, char* newroomid);
 bool ChangePurchaseDate(ExperimentalEquipment* eq, char* newdate);
 bool ChangeExperimentalCategory(ExperimentalEquipment* eq, Category* newcategory);
+bool ChangeState(ExperimentalEquipment* eq, EquipmentState newstate);
 
 
 LinkedList* EFindByName(LinkedList* eqlist, char* name);

@@ -27,10 +27,15 @@ ResourceManager* GetResourceManage()
 
 void LoadResource()
 {
-	LoadAccountList();
-	LoadCategoryList();
-	LoadEquipmentList();
-	LoadLaboratoryList();
+	char path[100];
+	strcpy_s(path, 100, "account.txt");
+	LoadAccountList(path);
+	strcpy_s(path, 100, "category.txt");
+	LoadCategoryList(path);
+	strcpy_s(path, 100, "equipment.txt");
+	LoadEquipmentList(path);
+	strcpy_s(path, 100, "laboratory.txt");
+	LoadLaboratoryList(path);
 	reLordAccountList();
 }
 
@@ -55,11 +60,13 @@ void DestoryResourceManage()
     destoryLinkedList(instance->account_list);
     destoryLinkedList(instance->equipment_list);
     destoryLinkedList(instance->laboratory_list);
+	destoryLinkedList(instance->category_list);
+	instance = NULL;
 }
 
-bool LoadAccountList()
+bool LoadAccountList(char* path)
 {
-	FILE* fp = fopen("account.txt", "r");
+	FILE* fp = fopen(path, "r");
 	if (fp == NULL)
 	{
 		printf("文件打开失败\n");
@@ -122,9 +129,9 @@ bool SaveAccountList(char* path)
 	return True;
 }
 
-bool LoadEquipmentList()
+bool LoadEquipmentList(char* path)
 {
-	FILE* fp = fopen("equipment.txt", "r");
+	FILE* fp = fopen(path, "r");
 	if (fp == NULL) 
 	{
 		printf("打开文件失败\n");
@@ -210,9 +217,9 @@ bool SaveEquipmentList(char* path)
 	return False;
 }
 
-bool LoadCategoryList()
+bool LoadCategoryList(char* path)
 {
-	FILE* fp = fopen("category.txt", "r");
+	FILE* fp = fopen(path, "r");
 	if (fp == NULL)
 	{
 		perror("文件打开失败\n");
@@ -256,9 +263,9 @@ bool SaveCategoryList(char* path)
 	return False;
 }
 
-bool LoadLaboratoryList()
+bool LoadLaboratoryList(char* path)
 {
-	FILE* fp = fopen("laboratory.txt", "r");
+	FILE* fp = fopen(path, "r");
 	if (fp == NULL)
 	{
 		printf("文件打开失败\n");

@@ -24,7 +24,7 @@ void ASystemMaintenance(Account* account)
         printf("请选择: ");
 
         scanf_s("%d", &choice);
-        fflush(stdin);
+        getchar();
 
         system("cls");
         switch (choice)
@@ -57,14 +57,9 @@ void ASystemMaintenance(Account* account)
         case 5:
             BackupSystemData(account->id);
             break;
-            /*case 3:
-                BackupSystemData(account->id);
-                break;
-
-            case 4:
-                RestoreSystemData(account->id);
-                break;*/
-
+        case 6:
+			RestoreSystemData(account->id);
+			break;
         case 0:
             exit = true;
             break;
@@ -334,34 +329,38 @@ bool RestoreSystemData(int adminId)
 {
     char confirmInput;
     printf("警告：恢复操作将覆盖当前所有数据！继续？(Y/N): ");
+    printf("建议备份当前节点数据\n");
     scanf_s("%c", &confirmInput, 1);
-    fflush(stdin);
+    getchar();
 
     if (confirmInput != 'Y' && confirmInput != 'y') {
         printf("已取消恢复操作\n");
         return false;
     }
-
-    FILE* backupFile;
-    errno_t err = fopen_s(&backupFile, BACKUP_FILE_PATH, "rb");
-    if (err != 0 || backupFile == NULL) {
-        printf("找不到备份文件: %s\n", BACKUP_FILE_PATH);
-        return false;
-    }
-
-    // 这里应该实现实际的恢复逻辑，根据备份文件恢复系统数据
-    // 由于复杂性和代码量，这里只提供一个简化的示例
-
-    printf("正在从备份文件恢复数据...\n");
-    // 恢复账户数据
-    // ...
-
-    // 恢复其他数据
-    // ...
-
-    fclose(backupFile);
+    
+    printf("请输入要恢复至的结点时间/文件夹名\n");
+    char formattedtime[50];
+    scanf_s("%s", formattedtime,100);
+    fflush(stdin);
+    char operation[50];
+	snprintf(operation, sizeof(operation), "系统数据恢复至%s", formattedtime);
+    LogSystemOperation(operation, adminId);
+    DestoryResourceManage();
+    char path[100];
+    snprintf(path, sizeof(path), "backups/%s/account.txt", formattedtime);
+    LoadAccountList(path);
+    snprintf(path, sizeof(path), "backups/%s/category.txt", formattedtime);
+    LoadCategoryList(path);
+    snprintf(path, sizeof(path), "backups/%s/equipment.txt", formattedtime);
+    LoadEquipmentList(path);
+    snprintf(path, sizeof(path), "backups/%s/laboratory.txt", formattedtime);
+    LoadLaboratoryList(path);
+    reLordAccountList;
+    SaveResource();
     printf("系统数据恢复成功\n");
+    printf("即将关闭系统，请手动重启\n");
 
-    LogSystemOperation("恢复系统数据", adminId);
+	system("pause");
+    exit(0);
     return true;
 }

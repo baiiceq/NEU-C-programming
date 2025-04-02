@@ -186,18 +186,40 @@ void ChangeExperimentalEquipment()
         printf("所属实验室ID: %d\n", equipment->room_id);
         printf("购买日期: %s\n", equipment->purchase_date);
         printf("类别: %s\n", equipment->category->name);
+        switch (equipment->state)
+        {
+        case Using:
+            printf("状态: 正在使用\n");
+            break;
+        case Idle:
+            printf("状态: 空闲\n");
+            break;
+        case Lost:
+            printf("状态: 遗失\n");
+            break;
+        case Damaged:
+            printf("状态: 损坏\n");
+            break;
+        case Scrapped:
+            printf("状态: 报废\n");
+            break;
+        case Repairing:
+            printf("状态: 正在维修\n");
+            break;
+        }
         printf("\n");
         printf("---            1. 修改名称               ---\n");
         printf("---            2. 修改价格               ---\n");
         printf("---            3. 修改所属实验室         ---\n");
         printf("---            4. 修改购买日期           ---\n");
         printf("---            5. 修改设备类别           ---\n");
+		printf("---            6. 修改设备状态           ---\n");
         printf("---            0. 退出                   ---\n");
         printf("--- 选择->");
 
         int option = 0;
         scanf_s("%d", &option);
-        getchar(); // 清除缓冲区
+        getchar(); 
 
         bool result = False;
         switch (option)
@@ -271,6 +293,15 @@ void ChangeExperimentalEquipment()
             }
             break;
         }
+        case 6:
+		{
+			printf("请选择新的设备状态（0:正在使用 1:空闲 2:遗失 3:损坏4:报废5:正在维修）：\n");
+			int new_state = 0;
+			scanf_s("%d", &new_state);
+			getchar();
+			result = ChangeState(equipment, new_state);
+			break;
+		}
         case 0:
             return; // 直接返回，无需返回值
         default:
@@ -344,6 +375,16 @@ bool ChangeExperimentalCategory(ExperimentalEquipment* eq, Category* newcategory
     return True;
 }
 
+bool ChangeState(ExperimentalEquipment* eq, EquipmentState newstate)
+{
+	if (newstate < 0 || newstate>5)
+	{
+		printf("状态非法\n");
+		return False;
+	}
+	eq->state = newstate;
+	return True;
+}
 
 //E表示equipment的查找
 LinkedList* EFindByName(LinkedList* eqlist,char* name)
