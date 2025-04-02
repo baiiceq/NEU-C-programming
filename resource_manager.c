@@ -2,6 +2,7 @@
 #include "account.h"
 #include "category.h"
 #include "experimental_equipment.h"
+#include "service.h"
 #include <string.h>
 
 static ResourceManager* instance = NULL;
@@ -20,6 +21,7 @@ ResourceManager* GetResourceManage()
         instance->equipment_list = CreateLinkedList();
         instance->laboratory_list = CreateLinkedList();
 		instance->category_list = CreateLinkedList();
+		instance->service_list = CreateLinkedList();
     }
 
     return instance;
@@ -36,6 +38,8 @@ void LoadResource()
 	LoadEquipmentList(path);
 	strcpy_s(path, 100, "laboratory.txt");
 	LoadLaboratoryList(path);
+	strcpy_s(path, 100, "service.txt");
+	LoadServiceList(path);
 	reLordAccountList();
 }
 
@@ -48,8 +52,10 @@ void SaveResource()
 	SaveCategoryList(path);
 	strcpy_s(path, 100, "equipment.txt");
 	SaveEquipmentList(path);
-	strcpy_s(path, 100,"laboratory.txt");
+	strcpy_s(path, 100, "laboratory.txt");
 	SaveLaboratoryList(path);
+	strcpy_s(path, 100, "service.txt");
+	SaveServiceList(path);
 }
 
 void DestoryResourceManage()
@@ -61,6 +67,7 @@ void DestoryResourceManage()
     destoryLinkedList(instance->equipment_list);
     destoryLinkedList(instance->laboratory_list);
 	destoryLinkedList(instance->category_list);
+	destoryLinkedList(instance->service_list);
 	instance = NULL;
 }
 
@@ -366,6 +373,77 @@ bool SaveLaboratoryList(char* path)
 	}
 	fclose(fp);
 	return False;
+}
+
+bool LoadServiceList(char* path)
+{
+	FILE* fp = fopen(path, "r");
+	if (fp == NULL)
+	{
+		printf("文件打开失败\n");
+		return False;
+	}
+	ResourceManager* resource_manager = GetResourceManage();
+	while (!feof(fp))
+	{
+		Service* service = (Service*)malloc(sizeof(Service));
+		if (service == NULL)
+		{
+			printf("内存分配失败\n");
+			fclose(fp);
+			return False;
+		}
+		char str[50] = "";
+		fscanf_s(fp, "%d %d %s %d %s %s %s\n", &service->service_id,&service->equipment_id, service->equipment_name,
+			EQUIPMENT_LENGTH, &service->user_id, service->data, DATE_LENGTH, str, 50, service->reason, NOTE_LENGTH);
+		service->equipment_name[strlen(service->equipment_name)] = '\0';
+		service->data[strlen(service->data)] = '\0';
+		service->reason[strlen(service->reason)] = '\0';
+		if (strcmp(str, "LostRegister") == 0)
+			service->type = LostRegister;
+		else if (strcmp(str, "DamagedRegister") == 0)
+			service->type = DamagedRegister;
+		else if (strcmp(str, "ServiceRegister") == 0)
+			service->type = ServiceRegister;
+		else if (strcmp(str, "ServiceFinish") == 0)
+			service->type = ServiceFinish;
+		else if (strcmp(str, "ScrapRegister") == 0)
+			service->type = ScrapRegister;
+		LinkedList_pushback(resource_manager->service_list, service);
+	}
+	fclose(fp);
+	return True;
+}
+
+bool SaveServiceList(char* path)
+{
+	FILE* fp = fopen(path, "w");
+	if (fp == NULL)
+	{
+		printf("文件打开失败\n");
+		return False;
+	}
+	Node* temp = GetResourceManage()->service_list->head->next;
+	while (temp)
+	{
+		Service* service = (Service*)temp->data;
+		char str[20] = "";
+		if (service->type == LostRegister)
+			strcpy_s(str, 20, "LostRegister");
+		else if (service->type == DamagedRegister)
+			strcpy_s(str, 20, "DamagedRegister");
+		else if (service->type == ServiceRegister)
+			strcpy_s(str, 20, "ServiceRegister");
+		else if (service->type == ServiceFinish)
+			strcpy_s(str, 20, "ServiceFinish");
+		else if (service->type == ScrapRegister)
+			strcpy_s(str, 20, "ScrapRegister");
+		fprintf(fp, "%d %d %s %d %s %s %s\n", service->service_id,service->equipment_id, service->equipment_name,
+			service->user_id, service->data, str, service->reason);
+		temp = temp->next;
+	}
+	fclose(fp);
+	return True;
 }
 
 //加载account中的equipment_id_list

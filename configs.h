@@ -14,10 +14,9 @@
 #define EQUIPMENT_LENGTH 50
 #define LABROOM_LENGTH 50
 #define LABRROM_LINKEDLIST_LENGTH 500
-// 系统备份文件路径
-#define BACKUP_FILE_PATH "system_backup.dat"
 
 #define DATE_LENGTH 11
+#define NOTE_LENGTH 60
 
 #endif // !CONFIGS
 

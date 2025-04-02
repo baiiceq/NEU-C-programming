@@ -3,7 +3,7 @@
 
 
 ExperimentalEquipment* CreateExperimentalEquipment(Category* category, char* name, int room_id, 
-    int price, char* purchase_date,EquipmentState state)
+    int price, char* purchase_date,EquipmentState state,int service_time)
 {
     ExperimentalEquipment* ee = (ExperimentalEquipment*)malloc(sizeof(ExperimentalEquipment));
 
@@ -20,7 +20,7 @@ ExperimentalEquipment* CreateExperimentalEquipment(Category* category, char* nam
     ee->room_id = room_id;
     strcpy_s(ee->purchase_date, DATE_LENGTH, purchase_date);
     ee->state = state;
-
+	ee->service_times = service_time;
     return ee;
 
 }
@@ -92,34 +92,37 @@ void AddExperimentalEquipment()
 		printf("输入设备状态(0:正在使用 1:空闲 2:遗失 3:损坏4:报废5:正在维修)->");
 		int state;
 		scanf_s("%d", &state);
+        getchar();
 		EquipmentState state1;
         switch (state)
         {
-		case 0:
-			state1 = Using;
-			break;
-		case 1:
-			state1 = Idle;
-			break;
-		case 2:
-			state1 = Lost;
-			break;
-		case 3:
-			state1 = Damaged;
-			break;
-		case 4:
-			state1 = Scrapped;
-			break;
-		case 5:
-			state1 = Repairing;
-			break;
-		default:
-			printf("非法指令\n");
-			system("pause");
-			return;
+        case 0:
+            state1 = Using;
+            break;
+        case 1:
+            state1 = Idle;
+            break;
+        case 2:
+            state1 = Lost;
+            break;
+        case 3:
+            state1 = Damaged;
+            break;
+        case 4:
+            state1 = Scrapped;
+            break;
+        case 5:
+            state1 = Repairing;
+            break;
+        default:
+            printf("非法指令\n");
+            system("pause");
+            return;
         }
+        int service_times;
+        scanf_s("%d", &service_times);
         Category* category = LinkedList_at(rm->category_list, select);
-        ExperimentalEquipment* new_ee = CreateExperimentalEquipment(category, name, room_id, price, purchase_date,state1);
+        ExperimentalEquipment* new_ee = CreateExperimentalEquipment(category, name, room_id, price, purchase_date,state1,service_times);
         if (new_ee == NULL)
             return;
 

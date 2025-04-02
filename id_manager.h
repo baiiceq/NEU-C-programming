@@ -10,7 +10,8 @@ typedef enum _IdType
     EquipmentID,
     CategoryID,
     RoomID,
-    AccountID
+    AccountID,
+    ServiceID
 }IdType;
 
 typedef struct _IdManager
@@ -19,6 +20,7 @@ typedef struct _IdManager
     int current_category_id;    // 设备类别ID
     int current_room_id;        // 房间ID
     int current_account_id;     // 账户ID
+	int current_service_id;     // 维修ID
 }IdManager;
 
 // 获取一个新ID

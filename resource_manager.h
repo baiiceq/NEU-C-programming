@@ -11,6 +11,7 @@ typedef struct _ResourceManager
 	LinkedList* equipment_list;    // 实验设备
 	LinkedList* category_list;     // 实验设备类型
 	LinkedList* laboratory_list;   // 实验室
+	LinkedList* service_list;      // 维修记录
 }ResourceManager;
 
 
@@ -19,20 +20,23 @@ ResourceManager* GetResourceManage();
 void LoadResource();
 void SaveResource();
 
-bool LoadAccountList();
+bool LoadAccountList(char*);
 bool SaveAccountList(char*);
 
 
-bool LoadEquipmentList();
+bool LoadEquipmentList(char*);
 bool SaveEquipmentList(char*);
 
 
-bool LoadCategoryList();
+bool LoadCategoryList(char*);
 bool SaveCategoryList(char*);
 
 
-bool LoadLaboratoryList();
+bool LoadLaboratoryList(char*);
 bool SaveLaboratoryList(char*);
+
+bool LoadServiceList(char*);
+bool SaveServiceList(char*);
 
 bool reLordAccountList();
 

@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="account.c" />
+    <ClCompile Include="service.c" />
     <ClCompile Include="systemmaintenance.c" />
     <ClInclude Include="account.h" />
     <ClCompile Include="category.c" />
@@ -146,6 +147,7 @@
     <ClCompile Include="register_interface.c" />
     <ClCompile Include="resource_manager.c" />
     <ClInclude Include="systemmaintenance.h" />
+    <ClInclude Include="service.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="category.h" />

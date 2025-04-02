@@ -81,11 +81,15 @@ void RunManagementInterface(int option, EquipmentManagement* em, AccountType acc
             em->current_account = NULL;
             em->current_state = Login;
             return;
+        case 1:
+            AddService(em->current_account);
+            break;
         case 5:
             SystemMaintenance(em->current_account);
         default:
             break;
         }
+        system("pause");
         break;
 
     case User:
@@ -112,12 +116,13 @@ void QueryInformation()
     printf("---          2. 账户                 ---\n");
     printf("---          3. 实验设备类别         ---\n");
     printf("---          4. 实验设备             ---\n");
+	printf("---          5. 维修记录             ---\n");
     printf("---          0. 返  回               ---\n");
     printf("选择->");
 
     int option = 0;
     scanf_s("%d", &option);
-
+    getchar();
     switch (option)
     {
     case 0:
@@ -134,6 +139,9 @@ void QueryInformation()
     case 4:
         QueryEquipmentMenu();
         break;
+    case 5:
+		QueryServiceMenu();
+		break;
     default:
         printf("非法指令\n");
         system("pause");

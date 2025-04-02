@@ -69,6 +69,9 @@
     <ClCompile Include="systemmaintenance.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="service.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="equipment_management.h">
@@ -114,6 +117,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="systemmaintenance.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="service.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

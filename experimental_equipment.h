@@ -27,9 +27,10 @@ typedef struct _ExperimentalEquipment
 	int price;                                // 设备价格
 	char purchase_date[DATE_LENGTH];          // 购入日期 (YYYY-MM-DD)
 	EquipmentState state;                     // 设备状态
+	int service_times;                        // 维修次数;
 }ExperimentalEquipment;
 
-ExperimentalEquipment* CreateExperimentalEquipment(Category* category, char* name, int room_id, int price, char* purchase_date);
+ExperimentalEquipment* CreateExperimentalEquipment(Category* category, char* name, int room_id, int price, char* purchase_date,int service_time);
 
 void DestoryExperimentalEquipment(ExperimentalEquipment* experimental_equipment);
 

@@ -1,0 +1,4 @@
+1 1 01010001 1 2005-01-01 DamagedRegister nothing
+2 4 02040004 2 2005-01-02 LostRegister nothing
+3 4 02040004 2 2005-01-02 ServiceRegister nothing
+4 4 02040004 2 2025-04-02 ServiceFinish nothing
